@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+nav img{
+    height: 50px;
+}
+
+nav .container a{
+    color: white !important;
+    padding: 5px;
+    transition: border 1s, transform 1s;
+}
+
+nav .container a:hover{
+    color: gold !important;
+    border-top: 1px  solid white;
+    border-bottom: 1px  solid white;
+    transform: scale(1.2,1.2);
+}
+
+nav .container ul li div a{
+    color: black !important;
+}
+
+nav .container ul li div a:hover{
+    color: black !important;
+    transform: scale(0.9, 0.9) ;
+}
+
+#first{
+    border-right: 1px solid gray;
+}
+
+div.col-3 div.row{
+    line-height: 40px;
+    font-size: 16px;
+}
+
+div.col-8 h5{
+    border-bottom: 1px solid gainsboro;
+}
+
+.fa{
+    border: 1px solid gainsboro;
+    border-radius: 40px;
+    padding: 10px;
+}

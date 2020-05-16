@@ -1,0 +1,65 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+nav img{
+    height: 50px;
+}
+
+nav .container a{
+    color: white !important;
+    padding: 5px;
+    transition: border 1s, transform 1s;
+}
+
+nav .container a:hover{
+    color: gold !important;
+    border-top: 1px  solid white;
+    border-bottom: 1px  solid white;
+    transform: scale(1.2,1.2);
+}
+
+main.py-4{
+    padding: 0px !important;
+}
+
+.container-fluid{
+    background: url('../image/quiz3.jpeg') no-repeat;
+    background-size: 100%;
+    background-position: 100%;
+    padding-top: 10px !important;
+    color:white;
+    height: 800px !important;
+}
+
+div.w-50{
+    background: rgba(0, 0, 0, 0.4);
+    /* opacity: 0.6; */
+    color: white;
+    width: 600px !important;
+    height: 530px !important;
+    padding-bottom: 50px !important;
+    border-radius: 20px;
+}
+
+div.d-flex.justify-content-center.flex-column.mx-auto{
+    line-height: 50px;
+}
+
+div.d-flex.justify-content-center.flex-column.mx-auto h1{
+    font-size: 60px;
+    font-family: 'Work Sans', sans-serif;
+}
+
+div.d-flex.justify-content-center.flex-column.mx-auto p{
+    font-size: 25px;
+    line-height: 30px;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+div.d-flex.justify-content-center.flex-column.mx-auto button{
+    font-size: xx-large;
+    color: white;
+    font-family: 'Playfair Display', serif;
+}

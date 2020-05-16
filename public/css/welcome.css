@@ -1,0 +1,183 @@
+*{
+    box-sizing: border-box !important;
+    font-family: 'Times New Roman', Times, serif;
+}
+.row{
+    padding: 0px !important;
+    width: 101%;
+}
+
+#firstRow{
+    background: url('../image/photo-1516534775068-ba3e7458af70.jfif') no-repeat;
+    background-size: cover;
+}
+
+#firstRow .container-fluid{
+    background: rgba(0, 0, 0, .6);
+}
+
+#logo{
+    position: relative;
+    left: -422px;
+    height: 80px;
+}
+
+.nav-link{
+    margin-top: 11px;
+    display: block;
+    color: white;
+    transition: border 1s, transform 1s;
+    font-size: 16px;
+}
+
+.nav-link:hover{
+    color: gold;
+    border-top: 1px  solid white;
+    border-bottom: 1px  solid white;
+    transform: scale(1.2,1.2);
+}
+
+#content{
+    margin-top: 140px !important;
+    color: white;
+    padding-left: 150px;
+    margin-bottom: 170px;
+}
+#content h6{
+    border-left: 5px solid orangered;
+    font-size: x-large;
+    padding-left: 6px;
+}
+
+#content h1{
+    font-size: 70px;
+}
+
+#dot{
+    padding:  0px 10px;
+    height: 20px;
+    width: 10px;
+    display: inline-block;
+    background: orangered;
+}
+
+#content p{
+    font-size: 25px;
+    line-height: 40px;
+}
+
+#secondRow{
+    padding: 40px !important;
+
+}
+
+#secondRow:first-child{
+    visibility: visible; 
+    animation-delay: 0.5s; 
+    animation-name: rollIn;
+}
+
+#secondRow .col-6 img{
+    height: 430px;
+    width: inherit;
+}
+
+#secondRow .col-6 p{
+    font-size: 20px;
+    text-align: center;
+}
+
+#right{
+     animation-delay: 0.5s; 
+    animation-name: lightSpeedIn;
+}
+
+#sign{
+    height: 150px !important;
+    widows: 500px !important;
+}
+
+th, td{
+    padding: 0px !important;
+}
+
+.row{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.rounded{
+    height: 260px !important;
+    width: 100% !important;
+}
+
+.row .container-fluid .col-4{
+    width: 400px !important;
+}
+
+footer{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+footer h5{
+    font-weight: bolder;
+}
+
+.fa{
+    color: dodgerblue;
+    font-size: 26px !important;
+}
+
+footer .col-3 span.circle{
+    padding: 20px;
+    border-radius: 40px;
+    border: 1px solid white;
+}
+
+.border{
+    border: 2px solid white !important;
+}
+
+a[title=facebook]{
+    /* padding: 20px; */
+    background: #3a5a95;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+}
+
+a[title=twitter]{
+    /* padding: 20px; */
+    background: #57aced;;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+}
+
+a[title=google-plus]{
+    /* padding: 20px; */
+    background: #dd4f43;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+}
+.fa-google-plus{
+    font-size: 22px !important;
+    padding: 4px;
+}
+
+a[title=instagram]{
+    /* padding: 20px; */
+    background: #6b27b2;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+}
