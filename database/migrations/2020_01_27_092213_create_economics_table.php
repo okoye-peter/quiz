@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Results extends Migration
+class CreateEconomicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class Results extends Migration
      */
     public function up()
     {
-        Schema::create('results', function (Blueprint $table) {
+        //
+        Schema::create('Economics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->unique();
-            $table->json("scores");
+            $table->string("question");
+            $table->string("answer");
+            $table->string("option1");
+            $table->string("option2");
+            $table->string("option3");
             $table->timestamps();
-
-            $table->foreign("user_id")->references('id')->on("users")->onDelete('cascade');
         });
     }
 
@@ -30,6 +32,6 @@ class Results extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('results');
+        Schema::dropIfExists('Biology');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Economics extends Migration
+class CreateEnglishLanguageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,7 @@ class Economics extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('Economics', function (Blueprint $table) {
+        Schema::create('English Language', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string("question");
             $table->string("answer");
@@ -32,6 +31,6 @@ class Economics extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Biology');
+        Schema::dropIfExists('English Language');
     }
 }

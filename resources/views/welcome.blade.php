@@ -28,7 +28,7 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#"" class="nav-link">Check Result</a>
+                        <a href="{{ route('check.result') }}" class="nav-link">Check Result</a>
                     </li>
                     @if (Route::has('login'))
                         @auth

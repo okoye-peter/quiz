@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
@@ -30,19 +30,21 @@ class HomeController extends Controller
     public function index()
     {
         $user  = \Auth::user();
-        $this->courses = explode(", " ,auth()->user()->course->courses);
-        if ($this->courses) {
-            foreach ($this->courses as $value) {
-                $table = ucfirst($value);
+        // check if user have registered courses
+        if (auth()->user()->registered_courses) {
+            $this->courses = json_decode(auth()->user()->registered_courses->courses);
+            foreach ($this->courses->course as $value) {
                 $$value = DB::table($value)->select('id', 'question', 'answer', 'option1', 'option2', 'option3')->inRandomOrder()->get();
                 $this->question[$value] = $$value;
             }
             $questions = $this->question;
-            $courses = $this->courses;
+            $courses = $this->courses->course;
             return view("startQuiz", compact("user", "questions", "courses"));
         } else {
             # code...
-            return view('home',compact('user'));
+            $courses = Course::pluck("course");
+
+            return view('home',compact('user', 'courses'));
         }
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-	<link rel="stylesheet" href="{{ asset('css/startQuiz.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/startQuiz.css') }}">
 @endsection
 @section('content')
 
@@ -9,7 +9,7 @@
 <div class="container-fluid">
 	<div class="row mt-4">
 		<div class="col-3">
-			<img src="{{ $user->image }}" class="img-thumbnail my-5 mx-auto d-block">
+			<img src="{{ $user->image }}" class="img-thumbnail my-5 mx-auto d-block wow bounceInDown">
             <div class="row w-100">
                 <div class="col-6">
                     Name:
@@ -23,8 +23,14 @@
                 <div class="col-6">
                     {{$user->email}}
                 </div>
-
             </div>
+            <h5 class="row timer justify-content-center my-5">
+                <span id="hrs">00</span>
+                <span class="blinkers">:</span>
+                <span id="mins">01</span>
+                <span class="blinkers">:</span>
+                <span id="secs">12</span>
+            </h5>
 		</div>
 		<div class="col-9">
 			<form action="{{ route('mark') }}" method="post">
@@ -89,5 +95,5 @@
         </div>
     </div>
 </div>
-
+<script src="{{ asset('js/timer.js') }}"></script>
 @endsection

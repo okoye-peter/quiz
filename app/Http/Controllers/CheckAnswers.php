@@ -9,11 +9,11 @@ use App\Result;
 class CheckAnswers extends Controller
 {
     public function score(Request $request){
-        $user = auth()->user()->with('course')->first();
+        $user = auth()->user()->with('registered_courses')->first();
         $result = [];
-        $courses = explode(', ', $user->course->courses);
+        $courses = json_decode($user->registered_courses->courses);
         $choices = collect($request->all())->flatten(1)->toArray();
-        foreach ($courses as $index =>$course) {
+        foreach ($courses->course as $index =>$course) {
             $result[$course] = 0;
             $answers = DB::table($course)->pluck('answer');
             foreach ($answers as $index => $answer) {
@@ -28,6 +28,12 @@ class CheckAnswers extends Controller
             'user_id' => auth()->user()->id,
             'scores' => $result
         ]);
+
+        $user->registered_courses()->update([
+            'completed' => true,
+            'updated_at' => now()
+        ]);
+
         return view('finish', compact($user));
     }
 }

@@ -40,8 +40,8 @@ class User extends Authenticatable implements CanResetPassword
     ];
 
 
-    public function course(){
-        return $this->hasOne(Course::class);
+    public function registered_courses(){
+        return $this->hasOne(RegisteredCourses::class);
     }
 
     public function result(){

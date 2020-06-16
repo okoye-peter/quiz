@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Biology extends Migration
+class CreateRegisteredCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class Biology extends Migration
      */
     public function up()
     {
-        Schema::create('Biology', function (Blueprint $table) {
+        Schema::create('registered_courses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("question");
-            $table->string("answer");
-            $table->string("option1");
-            $table->string("option2");
-            $table->string("option3");
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->json('courses');
+            $table->boolean('completed')->default(false);
+            $table->dateTime('started')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class Biology extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Biology');
+        Schema::dropIfExists('registered_courses');
     }
 }

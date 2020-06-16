@@ -8,28 +8,26 @@ use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
-    protected $courses = array();
+    protected $question = array();
 
     public function registerCourses(Request $request){
-        $coursesSelected = $request->validate([
+        $courses = $request->validate([
             'course' => 'array | size: 4 '
         ]);
+
         $user = Auth::user();
-
-        $courses = implode(", " , $coursesSelected['course']);
-
     
-            $user->course()->create(['courses' => $courses]);
-            
-            foreach ($coursesSelected['course'] as $value) {
-                $$value = DB::table($value)->select('id', 'question', 'answer', 'option1', 'option2', 'option3')->inRandomOrder()->get();
-    
-                $this->courses[$value] = $$value;
-            }
+        $user->registered_courses()->create(['courses' => json_encode($courses), 'started' => now() ]);
+        
+        foreach ($courses['course'] as $value) {
+            $$value = DB::table($value)->select('id', 'question', 'answer', 'option1', 'option2', 'option3')->inRandomOrder()->get();
 
-            $coursesQuestion = $this->courses;
+            $this->question[$value] = $$value;
+        }
 
-            return view("startQuiz", compact("user", "coursesQuestion", "coursesSelected"));
+        $questions = $this->question;
+
+        return view("startQuiz", compact("user", "questions", "courses"));
     }
 
 }

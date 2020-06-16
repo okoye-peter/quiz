@@ -13,14 +13,20 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" media="all">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" media="all">
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all">
+
+    <!-- wow js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('css/nav.css') }}" rel="stylesheet" media="all">
+    
 
     <!-- external css -->
     @yield('css')
@@ -41,7 +47,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="" class="nav-link">Check Result</a>
+                            <a href="{{ route('check.result') }}" class="nav-link">Check Result</a>
                         </li>
                     </ul>
 
@@ -86,6 +92,17 @@
         </main>
     </div>
 
+    <script>
+        wow = new WOW(
+            {
+                animateClass: 'animated',
+                offset:       100,
+                callback:     function(box) {
+                }
+            }
+        );
+        wow.init();
+    </script>
 
 </body>
 </html>

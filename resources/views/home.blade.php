@@ -5,28 +5,28 @@
 @endsection
 @section('content')
 <div class="container-fliud">
-    <div class="row justify-content-center w-100">
-        <div class="col-3" id="first">
+    <div class="row justify-content-center w-100 mx-0">
+        <div class="col-3 col-lg-3 col-md-3 col-sm-3" id="first">
             <img src="{{ $user->image }}" class="img-thumbnail my-5">
-            <div class="row w-100">
-                <div class="col-6">
+            <div class="row w-100 flex-wrap">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                     Name:
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                     {{$user->name}}
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                     Email: 
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
                     {{$user->email}}
                 </div>
 
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-8 col-lg-8 col-md-8 col-sm-8">
             <h5 class="w-50 mt-5">
-                Select your preferred Subjects atleast 4:
+                Select your preferred Subjects at least 4:
             </h5>
 
             <form action="{{ route('courseReg') }}" method="post">
@@ -38,53 +38,14 @@
                         </ul>
                     </div>
                 @endif
-                <div class="form-group row">
-                    <div class="col-md-6">
-                        <input id="Mathematics" type="checkbox" class="form-check-label @error('Mathatics') is-invalid @enderror" name="course[]" value="Mathematics" >
+                <div class="option">
+                    @foreach ($courses as $course)
+                        <div class="form-group">
+                            <input id="{{$course}}" type="checkbox" class="form-check-label @error('{{$course}}') is-invalid @enderror" name="course[]" value="{{$course}}" >
 
-                        <label for="Mathematics" class="col-md-4 col-form-label text-md-left">{{ __('Mathematics') }}</label>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-md-6">
-                        <input id="English_Language" type="checkbox" class="form-check-label @error('Mathatics') is-invalid @enderror" name="course[]" value="English Language" >
-
-                        <label for="English_Language" class="col-md-4 col-form-label text-md-left">{{ __('English Language') }}</label>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-md-6">
-                        <input id="Physics" type="checkbox" class="form-check-label @error('Physics') is-invalid @enderror" name="course[]" value="Physics" >
-
-                        <label for="Physics" class="col-md-4 col-form-label text-md-left">{{ __('Physics') }}</label>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-md-6">
-                        <input id="Chemistry" type="checkbox" class="form-check-label @error('Chemistry') is-invalid @enderror" name="course[]" value="Chemistry" >
-
-                        <label for="Chemistry" class="col-md-4 col-form-label text-md-left">{{ __('Chemistry') }}</label>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <div class="col-md-6">
-                        <input id="Biology" type="checkbox" class="form-check-label @error('Biology') is-invalid @enderror" name="course[]" value="Biology" >
-
-                        <label for="Biology" class="col-md-4 col-form-label text-md-left">{{ __('Biology') }}</label>
-                    </div>
-                </div>
-
-
-                <div class="form-group row">
-                    <div class="col-md-6">
-                        <input id="Economics" type="checkbox" class="form-check-label @error('Economics') is-invalid @enderror" name="course[]" value="Economics" >
-
-                        <label for="Economics" class="col-md-4 col-form-label text-md-left">{{ __('Economics') }}</label>
-                    </div>
+                            <label for="{{$course}}">{{$course}}</label>
+                        </div>
+                    @endforeach
                 </div>
 
                 <input type="submit" value="register" class="btn btn-info mb-4 ml-5 text-white">
@@ -94,7 +55,7 @@
     </div>
 
 
-    <div class="row w-100 shadow px-5 py-4">
+    <div class="row w-100 shadow px-5 py-4 mx-0">
         <div class="col-3 text-muted">
             <h4 class=" mb-4">CUSTOMER FAVES</h4>
             <p>Quiz Maker</p>
