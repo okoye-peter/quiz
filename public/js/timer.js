@@ -1,5 +1,4 @@
-setInterval(countDown, 1000);
-// countDown();
+var interval = setInterval(countDown, 1000);
 
 function countDown() {
     let hrs = document.getElementById('hrs');
@@ -21,7 +20,6 @@ function countDown() {
             }
         }
         secs.innerHTML = 59;
-        console.log('b');
     }
 
     secs.innerHTML = +secs.textContent - 1;
@@ -29,10 +27,7 @@ function countDown() {
         secs.innerHTML ="0"+ secs.textContent ;
     }
 
-    // add animation effect
-    // if (+hrs.innerHTML == 00 && +mins.innerHTML ==00 && +secs.innerHTML <= 10) {
-    //     hrs.parentNode.classList.add('wow');
-    //     hrs.parentNode.classList.add('pulse');
-    //     hrs.parentNode.classList.add('animated');
-    // }
+    if (+hrs.textContent == 0 && +mins.textContent == 0 && +secs.textContent == 0) {
+        clearInterval(interval);
+    }
 }

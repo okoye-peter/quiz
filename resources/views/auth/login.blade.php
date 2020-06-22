@@ -7,16 +7,16 @@
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center shadow" id="row">
-        <div class="col-6 p-0">
+        <div class="col-lg-6 col-md-5 col-sm-12 col-12 p-0">
             <img src="{{asset('image/download (1).jfif')}}" alt="">
         </div>
-        <div class="col-md-6 d-flex justify-content-center flex-column">
-            <h6 class="font-weight-bolder text-center mb-3">{{ __('Login') }}</h6>
+        <div class="col-lg-6 col-md-7 col-sm-12 col-12 d-flex justify-content-center flex-column form">
+            <h6 class="font-weight-bolder text-center my-3">{{ __('Login') }}</h6>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <label for="email" class="col-md-4 col-form-label text-md-right label">{{ __('E-Mail Address') }}</label>
 
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <label for="password" class="col-md-4 col-form-label text-md-right label">{{ __('Password') }}</label>
 
                         <div class="col-md-6">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">

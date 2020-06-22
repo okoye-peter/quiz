@@ -25,11 +25,11 @@
                 </div>
             </div>
             <h5 class="row timer justify-content-center my-5">
-                <span id="hrs">00</span>
+                <span id="hrs">@if ($time_remaining->hour < 10)0{{$time_remaining->hour}}@else{{$time_remaining->hour}}@endif</span>
                 <span class="blinkers">:</span>
-                <span id="mins">01</span>
+                <span id="mins">@if ($time_remaining->minute < 10)0{{$time_remaining->minute}}@else{{$time_remaining->minute}}@endif</span>
                 <span class="blinkers">:</span>
-                <span id="secs">12</span>
+                <span id="secs">@if ($time_remaining->second < 10)0{{$time_remaining->second}}@else{{$time_remaining->second}}@endif</span>
             </h5>
 		</div>
 		<div class="col-9">

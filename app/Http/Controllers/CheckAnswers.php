@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Result;
 
 class CheckAnswers extends Controller
@@ -15,17 +15,18 @@ class CheckAnswers extends Controller
         $choices = collect($request->all())->flatten(1)->toArray();
         foreach ($courses->course as $index =>$course) {
             $result[$course] = 0;
-            $answers = DB::table($course)->pluck('answer');
+            $answers = Course::where('course', $course)->with('questions')->first()->questions->pluck('answer');
             foreach ($answers as $index => $answer) {
                 if (array_search($answer, $choices)){
                     $result[$course]++;
                 }
             }
         }
+
         $result = json_encode($result);
 
-        Result::create([
-            'user_id' => auth()->user()->id,
+        $user->result()->create([
+            'user_id' => $user->id,
             'scores' => $result
         ]);
 

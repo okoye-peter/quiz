@@ -17,12 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/resize', function(){ return view('resize'); });
 Route::post('/change', 'resizeImage@resize')->name('change');
-Route::post('/courseRegister', 'PageController@registerCourses')->name('courseReg');
-Route::post('/score', 'CheckAnswers@score')->name('mark');
-Route::get('/check_result', 'ResultsController@showform')->name('check.result');
+Route::middleware('auth')->prefix('/user')->group(function(){
+    Route::post('/courseRegister', 'PageController@registerCourses')->name('courseReg');
+    Route::post('/score', 'CheckAnswers@score')->name('mark');
+    Route::get('/check_result', 'ResultsController@showform')->name('check.result');
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 Route::post('/check_result', 'ResultsController@fetchResult')->name('result');
 // Route::post('password/email', "Auth/ForgotPasswordControllre@sendResetLinkEmail");
 // Route::post('password/reset', "Auth/ResetPasswordControllre@reset");
