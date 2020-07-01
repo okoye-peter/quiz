@@ -20,6 +20,8 @@ class CreateRegisteredCoursesTable extends Migration
             $table->boolean('completed')->default(false);
             $table->dateTime('started')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -33,7 +33,7 @@
             </h5>
 		</div>
 		<div class="col-9">
-			<form action="{{ route('mark') }}" method="post">
+			<form action="{{ route('mark') }}" method="post" name="quiz">
                 {{-- subjects begins --}}
 				<ul class="nav nav-pills nav-justify mb-4" role="tablist">
                     @foreach($courses as $key =>$course)
@@ -49,12 +49,14 @@
                 {{-- question begins --}}
 
                 @foreach($questions as $subject => $question)
-                    @php
-                        $z = array_search($subject, $courses) + 1;
-                    @endphp
                     @if($courses[0] === $subject)<div class="tab-content"> @endif
                     <div id="tab{{$i++}}" class="tab-pane  fade @if($courses[0] === $subject) active show @endif">
                         <div class="tab-content" style="margin-bottom:50px">
+                            @php
+                                // shuffle the subject question
+                                $question = json_decode($question);
+                                shuffle($question);
+                            @endphp
                             @foreach($question as $index => $content)
                                 <div class="tab-pane fade @if($index === 0) active show @endif" role="tabpanel" id="tab{{$i}}-{{ ++$index }}">
                                     {{-- quetions --}}

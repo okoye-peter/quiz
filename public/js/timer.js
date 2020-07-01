@@ -29,5 +29,6 @@ function countDown() {
 
     if (+hrs.textContent == 0 && +mins.textContent == 0 && +secs.textContent == 0) {
         clearInterval(interval);
+        document.quiz.submit();
     }
 }

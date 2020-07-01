@@ -9,7 +9,7 @@ use App\Result;
 class CheckAnswers extends Controller
 {
     public function score(Request $request){
-        $user = auth()->user()->with('registered_courses')->first();
+        $user = auth()->user();
         $result = [];
         $courses = json_decode($user->registered_courses->courses);
         $choices = collect($request->all())->flatten(1)->toArray();
