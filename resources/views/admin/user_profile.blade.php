@@ -23,7 +23,6 @@
                 @endforeach
             </div>
         @enderror
-        {{-- <img src="{{ $user->image }}" alt="" class="img-thumbnail"> --}}
         <img src='{{ asset("$user->image") }}' alt="" class="img-thumbnail image">
         <div class="row flex-wrap mb-4 justify-content-between">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
