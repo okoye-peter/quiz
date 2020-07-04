@@ -20,7 +20,6 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::where('isadmin', false)->with('registered_courses', 'result')->get();
-        // dd($users);
         return view('admin.dashboard', compact('users'));
     }
 
@@ -46,6 +45,11 @@ class AdminController extends Controller
             'image' => 'required|image|max:2500'
         ]);
 
+        $courses = Course::orderBy('course', 'ASC')->get();
+        $registered_courses = json_decode($user->registered_courses->courses);
+        $id = $user->registered_courses ?  $user->registered_courses->id : '';
+        $result = $user->result ? json_decode($user->result->scores) : 'not available';
+
         $name = $_FILES['avatar']['tmp_name'];
         // upload image to cloud
         Cloudder::upload($name, null);
@@ -55,7 +59,7 @@ class AdminController extends Controller
         $data['image'] = $image_url;
 
         if ($user->update($data)) {
-            return back()->with('success', "$request->name credentials updated successfully");
+            return back()->with('success', "$request->name credentials updated successfully", compact('registered_courses','result', 'courses', 'user'));
         }
 
         return back()->withErrors(['failed' => "sorry something went wrong"]);
@@ -74,9 +78,9 @@ class AdminController extends Controller
         $result = $user->result ? json_decode($user->result->scores) : 'not available';
 
         if ($registered_course->update(['courses' => $data])) {
-            return back()->with('success', "Courses updated successfully", compact('registered_courses','result', 'courses'));
+            return back()->with('success', "Courses updated successfully", compact('registered_courses','result', 'courses', 'user'));
         }
 
-        return back()->withErrors(['failed' => "sorry something went wrong"]);
+        return back()->withErrors(["failed"=> "sorry something went wrong"]);
     }
 }

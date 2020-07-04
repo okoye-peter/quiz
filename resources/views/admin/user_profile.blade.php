@@ -7,20 +7,17 @@
 @section('content')
     <div class="container">
         @if (session()->has('success'))
-            
             <div class="alert alert-success fade in alert-dismissible show">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
                 <strong>Success!</strong> {{session()->get('success')}}
             </div>
         @endif
-        @if(!empty($errors))
-            <div class="alert alert-danger fade in alert-dismissible show">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
-                @foreach ($errors as $error)
-                    <small class="d-block">{{ $error }}</small>
-                @endforeach
-            </div>
-        @endif
+        @error('failed')
+        <div class="alert alert-danger fade in alert-dismissible show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+            <strong>Oops!</strong> {{$errors->get('failed')[0]}}
+        </div>
+        @enderror
         <img src='{{ asset("$user->image") }}' alt="" class="img-thumbnail image">
         <div class="row flex-wrap mb-4 justify-content-between">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -101,6 +98,7 @@
                     <div class="tab-content">
                         <div id="user" class="container tab-pane active">
                             <form class="user_details_edit_form" action='{{route("user.update", [$user->id,$user->name])}}' method="post" enctype="multipart/form-data">
+                                @csrf
                                 @method('PATCH')
                                 <img src='{{ asset("$user->image") }}' alt="" class="user_edit_image">
                                 <div class="container">
@@ -111,7 +109,7 @@
                                                 <input type="name" name="name" id="name" value="{{ $user->name }}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="dov">Date of birth:</label>
+                                                <label for="dob">Date of birth:</label>
                                                 <input type="date" name="birth" id="birth" value="{{ $user->name }}">
                                             </div>
                                             <div class="form-group">
