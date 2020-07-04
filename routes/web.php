@@ -38,7 +38,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/home', 'admin\AdminController@index')->name('admin.dashboard');
     Route::get('/profile/{user}-{name}', 'admin\AdminController@userProfile')->name('user.profile');
     Route::patch('/user/{user}-{name}', 'admin\AdminController@userProfileUpdate')->name('user.update');
-    Route::patch('/course/{course}-{name}', 'admin\AdminController@courseUpdate')->name('course.update');
+    Route::patch('/course/{registered_course}-{name}', 'admin\AdminController@registered_course_update')->name('course.update');
 });
 // Route::post('password/email', "Auth/ForgotPasswordControllre@sendResetLinkEmail");
 // Route::post('password/reset', "Auth/ResetPasswordControllre@reset");

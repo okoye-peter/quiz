@@ -5,24 +5,22 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         @if (session()->has('success'))
+            
             <div class="alert alert-success fade in alert-dismissible show">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
                 <strong>Success!</strong> {{session()->get('success')}}
             </div>
         @endif
-        @error('failed')
+        @if(!empty($errors))
             <div class="alert alert-danger fade in alert-dismissible show">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
-                <strong>Oops!</strong> {{$message}}
                 @foreach ($errors as $error)
-                    @if ($error != $errors->failed )
-                        <small class="d-block">{{ $error }}</small>                    
-                    @endif
+                    <small class="d-block">{{ $error }}</small>
                 @endforeach
             </div>
-        @enderror
+        @endif
         <img src='{{ asset("$user->image") }}' alt="" class="img-thumbnail image">
         <div class="row flex-wrap mb-4 justify-content-between">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -101,7 +99,7 @@
 
                     <!-- forms -->
                     <div class="tab-content">
-                        <div id="user" class="container tab-pane active"><br>
+                        <div id="user" class="container tab-pane active">
                             <form class="user_details_edit_form" action='{{route("user.update", [$user->id,$user->name])}}' method="post" enctype="multipart/form-data">
                                 @method('PATCH')
                                 <img src='{{ asset("$user->image") }}' alt="" class="user_edit_image">
@@ -174,9 +172,9 @@
                                                     @foreach ($courses as $course)
                                                         <div class="form-check">
                                                             @if (in_array($course->course, $registered_courses->course))
-                                                                <input type="checkbox" name="courses[]" value="{{$course->course}}" class="form-check-input" checked> {{$course->course}}
+                                                                <input type="checkbox" name="course[]" value="{{$course->course}}" class="form-check-input" checked> {{$course->course}}
                                                             @else
-                                                                <input type="checkbox" name="courses[]" value="{{$course->course}}" class="form-check-input"> {{$course->course}}
+                                                                <input type="checkbox" name="course[]" value="{{$course->course}}" class="form-check-input"> {{$course->course}}
                                                             @endif
                                                         </div>
                                                     @endforeach

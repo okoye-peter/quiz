@@ -7,6 +7,7 @@ use JD\Cloudder\Facades\Cloudder;
 use Illuminate\Http\Request;
 use App\User;
 use App\Course;
+use App\RegisteredCourses;
 
 class AdminController extends Controller
 {
@@ -19,6 +20,7 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::where('isadmin', false)->with('registered_courses', 'result')->get();
+        // dd($users);
         return view('admin.dashboard', compact('users'));
     }
 
@@ -59,14 +61,20 @@ class AdminController extends Controller
         return back()->withErrors(['failed' => "sorry something went wrong"]);
     }
 
-    public function courseUpdate(Course $course, Request $request)
+    public function registered_course_update(RegisteredCourses $registered_course, Request $request)
     {
+        $user = auth()->user();
         $data = json_encode($request->validate([
-            'course' => 'array | size: 4 | rquired'
+            'course' => 'array | size:4'
         ]));
 
-        if ($course->update(['courses' => $data])) {
-            return back()->with('success', "Courses updated successfully");
+        $courses = Course::orderBy('course', 'ASC')->get();
+        $registered_courses = json_decode($user->registered_courses->courses);
+        $id = $user->registered_courses->id;
+        $result = $user->result ? json_decode($user->result->scores) : 'not available';
+
+        if ($registered_course->update(['courses' => $data])) {
+            return back()->with('success', "Courses updated successfully", compact('registered_courses','result', 'courses'));
         }
 
         return back()->withErrors(['failed' => "sorry something went wrong"]);
