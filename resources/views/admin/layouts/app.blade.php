@@ -81,6 +81,7 @@
             <aside class="sidenav">
               <a href="{{ route('admin.dashboard') }}">users</a>
               <a href="#services">Complaint</a>
+            <a href="{{ route('admin.courses')}}">Course</a>
               <a href="#clients">Profile</a>
               <a href="#contact">results</a>
             </aside>

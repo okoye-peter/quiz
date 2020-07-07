@@ -21,39 +21,36 @@
         <img src='{{ asset("$user->image") }}' alt="" class="img-thumbnail image">
         <div class="row flex-wrap mb-4 justify-content-between">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <h5 class="text-center">User details</h5>
-                <p class="d-flex justify-content-between">
+                <h5>User details</h5>
+                <p class="grids">
                     <span>Name:</span>
                     <span>{{$user->name}}</span>
                 </p>
-                <p class="d-flex justify-content-between">
+                <p class="grids">
                     <span>Email:</span>
                     <span>{{$user->email}}</span>
                 </p>
-                <p class="d-flex justify-content-between">
+                <p class="grids">
                     <span>Date of birth:</span>
-                    <span>{{$user->name}}</span>
+                    <span>{{$user->birth}}</span>
                 </p>
-                <p class="d-flex justify-content-between">
+                <p class="grids">
                     <span>Address:</span>
-                    <span>{{$user->name}}</span>
+                    <span>{{$user->address}}</span>
                 </p>
-                <p class="d-flex justify-content-between">
+                <p class="grids">
                     <span>Nationality:</span>
-                    <span>{{$user->name}}</span>
+                    <span>{{$user->nationality}}</span>
                 </p>
-                <p class="d-flex justify-content-between">
+                <p class="grids">
                     <span>City:</span>
-                    <span>{{$user->name}}</span>
+                    <span>{{$user->city}}</span>
                 </p>
-                <p class="d-flex justify-content-between">
+                <p class="grids">
                     <span>Gender:</span>
-                    <span>{{$user->name}}</span>
+                    <span>{{$user->gender}}</span>
                 </p>
-                <!-- Button to Open the Modal -->
-                <button type="button" class="btn btn-outline-dark btn-sm d-block w-50 mx-auto" data-toggle="modal" data-target="#user_details_edit">
-                    Edit Details
-                </button>
+                
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                 <h5 class="text-center">Results</h5>
@@ -61,7 +58,7 @@
                     <h5 class="text-center">not yet registered</h5>
                 @else
                     @foreach ($registered_courses->course as $course)
-                        <p class="d-flex justify-content-between">
+                        <p class="grids">
                             <span>
                                 {{$course}}:
                             </span>
@@ -75,6 +72,12 @@
                 @endif
             </div>
         </div>
+        <section class="mb-4">
+            <!-- Button to Open the Modal -->
+            <button type="button" class="btn btn-outline-dark btn-sm d-block w-50 mx-auto" data-toggle="modal" data-target="#user_details_edit">
+                Edit Details
+            </button>
+        </section>
     </div> 
     
     <!-- edit user details or registered courses modal -->
@@ -110,18 +113,22 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="dob">Date of birth:</label>
-                                                <input type="date" name="birth" id="birth" value="{{ $user->name }}">
+                                                <input type="date" name="birth" id="birth" value="{{ $user->birth }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="nationality">Nationality:</label>
-                                                <input type="text" name="nationality" id="nationality" value="{{ $user->name }}">
+                                                <input type="text" name="nationality" id="nationality" value="{{ $user->nationality }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="gender">Gender</label>
                                                 <select name="gender" id="gender">
-                                                    <option value="" disabled selected>select a gender</option>
-                                                    <option value="M">Male</option>
-                                                    <option value="F">Female</option>
+                                                    @if ($user->gender == 'M')
+                                                        <option value="M" selected>Male</option>
+                                                        <option value="F">Female</option>    
+                                                    @else
+                                                        <option value="M">Male</option>
+                                                        <option value="F" selected>Female</option>    
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>
@@ -132,11 +139,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="address">Address:</label>
-                                                <input type="text" name="address" id="address" value="{{ $user->email }}">
+                                                <input type="text" name="address" id="address" value="{{ $user->address }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="city">City:</label>
-                                                <input type="text" name="city" id="city" value="{{ $user->name }}">
+                                                <input type="text" name="city" id="city" value="{{ $user->city }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="img">image:</label>
@@ -156,7 +163,7 @@
                                             @if ($registered_courses != 'not yet registered')
                                             <div class="card">
                                                 <div class="card-header text-center">Registered Course</div>
-                                                <div class="card-body d-flex justify-content-between">
+                                                <div class="card-body grids">
                                                     @foreach ($registered_courses->course as $course)
                                                         <span>{{$course}}</span>                                     
                                                     @endforeach

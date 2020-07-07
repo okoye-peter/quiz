@@ -1,7 +1,9 @@
-.navbar .container-fluid a, .navbar .container-fluid .collapse .ml-auto li a{
+.navbar .container-fluid a,
+.navbar .container-fluid .collapse .ml-auto li a {
     color: white
 }
-.navbar{
+
+.navbar {
     z-index: 2;
     position: fixed;
     width: 100%;
@@ -32,15 +34,19 @@
 }
 
 .main {
-    margin-left: 160px; /* Same as the width of the sidenav */
-    font-size: 28px; /* Increased text to enable scrolling */
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
+    font-size: 28px;
+    /* Increased text to enable scrolling */
     padding: 0px 10px;
 }
 
 @media screen and (max-height: 450px) {
-    .sidenav a {font-size: 18px;}
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 
-.main > .container{
+.main>.container {
     padding-top: 3em;
 }

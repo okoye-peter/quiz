@@ -36,9 +36,15 @@ Route::prefix('/admin')->group(function(){
     Route::middleware('isadmin')->post('/login', 'admin\LoginController@login')->name('admin.login');
     Route::post('/logout', 'admin\LoginController@logout')->name('admin.logout');
     Route::get('/home', 'admin\AdminController@index')->name('admin.dashboard');
+    Route::get('/{course}-{name}/questions', 'admin\AdminController@fetch_questions')->name('course.questions');
     Route::get('/profile/{user}-{name}', 'admin\AdminController@userProfile')->name('user.profile');
     Route::patch('/user/{user}-{name}', 'admin\AdminController@userProfileUpdate')->name('user.update');
-    Route::patch('/course/{registered_course}-{name}', 'admin\AdminController@registered_course_update')->name('course.update');
+    Route::post('/course', 'admin\AdminController@course_create')->name('course.create');
+    Route::patch('/update_registered_course/{registered_course}-{name}', 'admin\AdminController@registered_course_update')->name('course.update');
+    Route::delete('/delete/{course}-{name}', 'admin\AdminController@course_delete')->name('course.delete');
+    Route::get('/course', 'admin\AdminController@courses')->name('admin.courses');
+    Route::patch('/{question}-question', 'admin\AdminController@question_update')->name('question.update');
+    Route::delete('/{question}-question', 'admin\AdminController@question_delete')->name('question.delete');
 });
 // Route::post('password/email', "Auth/ForgotPasswordControllre@sendResetLinkEmail");
 // Route::post('password/reset', "Auth/ResetPasswordControllre@reset");
