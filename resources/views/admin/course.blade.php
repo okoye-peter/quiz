@@ -9,7 +9,7 @@
             <section class="section">
                 <div class="section-body">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12" id="wrapper">
                             @if (session()->has('msg'))
                                 <div class="alert alert-success alert-dismissible fade show">
                                     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -42,8 +42,8 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6">
                                                     <div class="dataTables_length" id="table-1_length">
-                                                        <label>Show 
-                                                            <select name="table_length" class="form-control form-control-sm">
+                                                        <label class="d-flex">Show 
+                                                            <select name="table_length" class="form-control form-control-sm w-25 mx-2">
                                                                 <option value="10">10</option>
                                                                 <option value="25">25</option>
                                                                 <option value="50">50</option>
@@ -55,8 +55,8 @@
                                                 </div>
                                                 <div class="col-sm-12 col-md-6">
                                                     <div id="table-1_filter" class="dataTables_filter">
-                                                        <label>Search:
-                                                            <input type="search" class="form-control form-control-sm" placeholder="">
+                                                        <label class="ml-auto d-flex justify-content-end">
+                                                            Search: <input type="search" class="form-control w-50 ml-2 form-control-sm" placeholder="filter table" onkeyup="filter(this.value)">
                                                         </label>
                                                     </div>
                                                 </div>
@@ -73,12 +73,16 @@
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody id="users">
                                                             @foreach ($courses as $course)
-                                                                <tr>
+                                                                <tr class="user">
                                                                     <td>{{ $course->id }}</td>
-                                                                    <td>{{ $course->course }}</td>
-                                                                    <td>{{ $course->time_limit }}</td>
+                                                                    <td>
+                                                                        <course-edit :id="{{ $course->id }}" val="{{ $course->course }}" column="course"></course-edit>
+                                                                    </td>
+                                                                    <td>
+                                                                        <course-edit :id="{{ $course->id }}" val="{{ $course->time_limit }}" column="time_limit"></course-edit>
+                                                                    </td>
                                                                     <td>{{$course->questions ? count($course->questions) : 0 }}</td>
                                                                     <td  class="d-flex justify-content-around">
                                                                         <a href="{{ route('course.questions', [$course->id,$course->course]) }}" class="btn btn-sm btn-primary">questions</a>
@@ -95,17 +99,12 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-12 col-md-5">
+                                                {{-- <div class="col-sm-12 col-md-5">
                                                     <div class="dataTables_info" id="table-1_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-sm-12 col-md-7">
                                                     <div class="dataTables_paginate paging_simple_numbers" id="table-1_paginate">
-                                                        <ul class="pagination">
-                                                            <li class="paginate_button page-item previous disabled" id="table-1_previous"><a href="#" aria-controls="table-1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                                            <li class="paginate_button page-item active"><a href="#" aria-controls="table-1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                            <li class="paginate_button page-item "><a href="#" aria-controls="table-1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                                            <li class="paginate_button page-item next" id="table-1_next"><a href="#" aria-controls="table-1" data-dt-idx="3" tabindex="0" class="page-link">Next</a></li>
-                                                        </ul>
+                                                        {{ $courses->links()}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,15 +121,5 @@
 @endsection
 
 @section('script')
-    <script>
-        function toggleForm() {
-            /* Toggle between hiding and showing the active panel */
-            let panel = document.querySelector('.panel');
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-        };
-    </script>
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 @endsection

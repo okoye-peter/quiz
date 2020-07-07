@@ -40,9 +40,11 @@ Route::prefix('/admin')->group(function(){
     Route::get('/profile/{user}-{name}', 'admin\AdminController@userProfile')->name('user.profile');
     Route::patch('/user/{user}-{name}', 'admin\AdminController@userProfileUpdate')->name('user.update');
     Route::post('/course', 'admin\AdminController@course_create')->name('course.create');
-    Route::patch('/update_registered_course/{registered_course}-{name}', 'admin\AdminController@registered_course_update')->name('course.update');
+    Route::patch('/{course}-course', 'admin\AdminController@course_update')->name('course.update');
+    Route::patch('/update_registered_course/{registered_course}-{name}', 'admin\AdminController@registered_course_update')->name('registered_course.update');
     Route::delete('/delete/{course}-{name}', 'admin\AdminController@course_delete')->name('course.delete');
     Route::get('/course', 'admin\AdminController@courses')->name('admin.courses');
+    Route::post('/{course}-create', 'admin\AdminController@question_create')->name('question.create');
     Route::patch('/{question}-question', 'admin\AdminController@question_update')->name('question.update');
     Route::delete('/{question}-question', 'admin\AdminController@question_delete')->name('question.delete');
 });

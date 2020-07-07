@@ -85,7 +85,7 @@ class AdminController extends Controller
 
     public function courses()
     {
-        $courses = Course::with('questions')->get();
+        $courses = Course::with('questions')->paginate(20);
         return view('admin.course', compact('courses'));
     }
 
@@ -101,11 +101,41 @@ class AdminController extends Controller
         return back()->with('msg', "$course created successfully");
     }
 
+    public function course_update(Course $course)
+    {
+        $data = json_decode(file_get_contents('php://input'));
+        if ($data->column == 'time_limit') {
+            $data->value = (int)$data->value;
+        }
+
+        if($course->update([$data->column => $data->value])){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
     public function course_delete(Course $course)
     {
         $name = $course->course; 
         $course->delete();
         return back()->with('msg', "$name deleted successfuly");
+    }
+
+    public function question_create(Course $course, Request $request)
+    {
+        $data = $request->validate([
+            'question' => 'required|string',
+            'answer' => 'required|string',
+            'option1' => 'required|string',
+            'option2' => 'required|string',
+            'option3' => 'required|string',
+        ]);
+
+        $data['course_id'] = $course->id;
+        Question::create($data);
+        return back()->with('msg', 'Qusetion created successfully');
+        
     }
 
     public function fetch_questions(Course $course)

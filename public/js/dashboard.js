@@ -18,3 +18,13 @@ function filter(inputFilter) {
         }
     });
 }
+
+function toggleForm() {
+    /* Toggle between hiding and showing the active panel */
+    let panel = document.querySelector('.panel');
+    if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+    } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+};

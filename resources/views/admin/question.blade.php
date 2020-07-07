@@ -17,6 +17,49 @@
                                     {{session()->get('msg')}}
                                 </div>
                             @endif
+                            <button type="button" class="btn btn-sm btn-success mb-2" onclick="toggleForm()">Add Question</button>
+                            @error('question')
+                                <small class="d-block">{{ $message }}</small>
+                            @enderror
+                            @error('answer')
+                                <small  class="d-block">{{ $message }}</small>
+                            @enderror
+                            @error('option1')
+                                <small  class="d-block">{{ $message }}</small>
+                            @enderror
+                            @error('option2')
+                                <small  class="d-block">{{ $message }}</small>
+                            @enderror
+                            @error('option3')
+                                <small  class="d-block">{{ $message }}</small>
+                            @enderror
+                            <form class="form-inline mb-3 panel" action="{{ route('question.create', [$course->id]) }}" method="post">
+                                @csrf
+                                <div class="grid">
+                                    <div>
+                                        <label for="question">Question:</label>
+                                        <input type="text" class="form-control form-control-sm mx-2 mb-2" placeholder="Enter question" id="question" name="question">
+                                    </div>
+                                    <div>
+                                        <label for="answer" class="ml-4">Answer:</label>
+                                        <input type="text" class="form-control form-control-sm mx-2" placeholder="Enter answer" id="answer" name="answer">
+                                    </div>
+                                    <div>
+                                        <label for="option" class="ml-4">Option 1:</label>
+                                        <input type="text" class="form-control form-control-sm mx-2" placeholder="Enter option 1" id="option" name="option1">
+                                    </div>
+                                    <div>
+                                        <label for="option" class="ml-4">Option 2:</label>
+                                        <input type="text" class="form-control form-control-sm mx-2" placeholder="Enter option 2" id="option" name="option2">
+                                    </div>
+                                    <div>
+                                        <label for="option">Option 3:</label>
+                                <input type="text" class="form-control form-control-sm mx-2" placeholder="Enter option 3" id="option" name="option3">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-dark mr-2 btn-sm">Create</button> 
+                                <button type="button" class="btn-link btn btn-sm" onclick="toggleForm()"> Cancel</button>
+                            </form>
                             <div class="card">
                                 <div class="card-header">
                                     <h4>{{$course->course}}</h4>
@@ -41,7 +84,7 @@
                                                 <div class="col-sm-12 col-md-6">
                                                     <div id="table-1_filter" class="dataTables_filter">
                                                         <label class="ml-auto d-flex justify-content-end">
-                                                            Search:  <input type="search" class="form-control form-control-sm w-50 ml-2" placeholder="filter table">
+                                                            Search:  <input type="search" class="form-control form-control-sm w-50 ml-2" onkeyup="filter(this.value)" placeholder="filter table">
                                                         </label>
                                                     </div>
                                                 </div>
@@ -60,12 +103,12 @@
                                                                 <th>action</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody id="users">
                                                             @php
                                                                 $i = 1;
                                                             @endphp
                                                             @foreach ($questions as $question)
-                                                                <tr>
+                                                                <tr class="user">
                                                                     <td>
                                                                         {{ $i++ }}
                                                                     </td>
@@ -98,17 +141,8 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-12 col-md-5">
-                                                    <div class="dataTables_info" id="table-1_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div>
-                                                </div>
                                                 <div class="col-sm-12 col-md-7">
                                                     <div class="dataTables_paginate paging_simple_numbers" id="table-1_paginate">
-                                                        <ul class="pagination">
-                                                            <li class="paginate_button page-item previous disabled" id="table-1_previous"><a href="#" aria-controls="table-1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                                            <li class="paginate_button page-item active"><a href="#" aria-controls="table-1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                            <li class="paginate_button page-item "><a href="#" aria-controls="table-1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                                            <li class="paginate_button page-item next" id="table-1_next"><a href="#" aria-controls="table-1" data-dt-idx="3" tabindex="0" class="page-link">Next</a></li>
-                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,5 +156,8 @@
             </section>
         </div>
     </div>
+@endsection
 
+@section('script')
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 @endsection

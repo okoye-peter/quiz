@@ -156,7 +156,9 @@
                             </form>
                         </div>
                         <div id="course" class="container tab-pane fade"><br>
-                            <form class="user_details_edit_form" action='{{ route("course.update", [$id, $user->name]) }}' method="post">
+                            <form class="user_details_edit_form" action='{{ route("registered_course.update", [$id, $user->name]) }}' method="post">
+                                @csrf
+                                @method("PATCH")
                                 <div class="container">
                                     <div class="row flex-wrap">
                                         <div class="col-lg-12">
