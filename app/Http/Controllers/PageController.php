@@ -11,15 +11,14 @@ class PageController extends Controller
 {
 
     public function registerCourses(Request $request){
-        date_default_timezone_set("Africa/Lagos");
         $courses = $request->validate([
             'course' => 'array | size: 4 | required'
         ]);
 
         $user = Auth::user();
-        $user->registered_courses()->create(['courses' => json_encode($courses), 'started' => now() ]);
+        $user->registered_courses()->create(['courses' => json_encode($courses)]);
         
-        return redirect('/home');
+        return redirect('/user/quiz/details');
     }
 
 }

@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// user routes
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/resize', function(){ return view('resize'); });
 Route::post('/change', 'resizeImage@resize')->name('change');
@@ -26,12 +27,15 @@ Route::middleware('auth')->prefix('/user')->group(function(){
     Route::post('/courseRegister', 'PageController@registerCourses')->name('courseReg');
     Route::post('/score', 'CheckAnswers@score')->name('mark');
     Route::get('/check_result', 'ResultsController@showform')->name('check.result');
+    Route::get('/quiz/details', 'HomeController@pre_quiz')->name('pre.quiz');
+    Route::get('/quiz/{user}-{name}', 'HomeController@startQuiz')->name('start.quiz');
 });
 Route::post('/check_result', 'ResultsController@fetchResult')->name('result');
 
 
 // admin route
 Route::prefix('/admin')->group(function(){
+    Route::post('/decision', 'admin\AdminController@decision')->name('admin.decision');
     Route::get('/', 'admin\LoginController@showLoginForm')->name('admin.form');
     Route::middleware('isadmin')->post('/login', 'admin\LoginController@login')->name('admin.login');
     Route::post('/logout', 'admin\LoginController@logout')->name('admin.logout');
@@ -48,5 +52,12 @@ Route::prefix('/admin')->group(function(){
     Route::patch('/{question}-question', 'admin\AdminController@question_update')->name('question.update');
     Route::delete('/{question}-question', 'admin\AdminController@question_delete')->name('question.delete');
 });
+
+// botman route
+Route::get('/bot', function(){
+    return view('botman');
+});
+
+Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 // Route::post('password/email', "Auth/ForgotPasswordControllre@sendResetLinkEmail");
 // Route::post('password/reset', "Auth/ResetPasswordControllre@reset");

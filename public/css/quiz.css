@@ -1,4 +1,4 @@
-.container-fluid{
+.container-fluid {
     font-size: 20px;
 }
 
@@ -8,8 +8,15 @@
     font-weight: bold;
 }
 
- h5.timer span{
+h5.timer span {
     font-size: 3em;
-    color: rgba(0, 0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
     font-family: digital;
+}
+
+img.img-thumbnail {
+    display: block;
+    height: 25%;
+    border-radius: 50%;
+    margin: 2em auto;
 }

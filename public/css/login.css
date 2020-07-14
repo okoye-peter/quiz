@@ -1,24 +1,29 @@
-.col-lg-6 img{
+.col-lg-6 img {
     width: inherit;
     border-radius: 10px 0px 0px 10px;
     height: 100%;
 }
 
-.container div#row{
+.container div#row {
     height: 500px;
     font-size: 20px;
+    margin: 1.53em 0.5em;
 }
 
+
 /* tablet */
-@media screen and (max-width: 768px){
-    .col-lg-6 form div.form-group .label{
+
+@media screen and (max-width: 768px) {
+    .col-lg-6 form div.form-group .label {
         text-align: justify;
         font-size: 16px;
     }
 }
 
+
 /* mobile */
-@media screen and (max-width: 425px){
+
+@media screen and (max-width: 425px) {
     .container div#row {
         height: 600px;
     }

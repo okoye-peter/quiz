@@ -18,13 +18,14 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-
+    // load all users that are not admin with their courses and result
     public function index()
     {
         $users = User::where('isadmin', false)->with('registered_courses', 'result')->get();
         return view('admin.dashboard', compact('users'));
     }
 
+    // load a single user details
     public function userProfile(User $user)
     {
         $courses = Course::orderBy('course', 'ASC')->get();
@@ -34,6 +35,7 @@ class AdminController extends Controller
         return view('admin.user_profile', compact('user', 'result', 'courses', 'registered_courses', 'id'));
     }
 
+    // update user details
     public function userProfileUpdate(User $user, Request $request)
     {
         $data = $request->validate([
@@ -64,6 +66,7 @@ class AdminController extends Controller
         return back()->withErrors(['failed' => "sorry something went wrong"]);
     }
 
+    // update user course
     public function registered_course_update(RegisteredCourses $registered_course, Request $request)
     {
         $user = auth()->user();
@@ -83,12 +86,14 @@ class AdminController extends Controller
         return back()->withErrors(["failed"=> "sorry something went wrong"]);
     }
 
+    // show all available courses
     public function courses()
     {
         $courses = Course::with('questions')->paginate(20);
         return view('admin.course', compact('courses'));
     }
 
+    // create a new course
     public function course_create(Request $request)
     {
         $data = $request->validate([
@@ -101,6 +106,7 @@ class AdminController extends Controller
         return back()->with('msg', "$course created successfully");
     }
 
+    // update course detail
     public function course_update(Course $course)
     {
         $data = json_decode(file_get_contents('php://input'));
@@ -115,6 +121,7 @@ class AdminController extends Controller
         }
     }
 
+    // delete a course
     public function course_delete(Course $course)
     {
         $name = $course->course; 
@@ -122,28 +129,32 @@ class AdminController extends Controller
         return back()->with('msg', "$name deleted successfuly");
     }
 
+    // add course questions
     public function question_create(Course $course, Request $request)
     {
-        $data = $request->validate([
-            'question' => 'required|string',
-            'answer' => 'required|string',
-            'option1' => 'required|string',
-            'option2' => 'required|string',
-            'option3' => 'required|string',
-        ]);
+        dd($request->all());
+        // $data = $request->validate([
+        //     'question' => 'required|string',
+        //     'answer' => 'required|string',
+        //     'option1' => 'required|string',
+        //     'option2' => 'required|string',
+        //     'option3' => 'required|string',
+        // ]);
 
-        $data['course_id'] = $course->id;
-        Question::create($data);
-        return back()->with('msg', 'Qusetion created successfully');
+        // $data['course_id'] = $course->id;
+        // Question::create($data);
+        // return back()->with('msg', 'Qusetion created successfully');
         
     }
 
+    // view course questions
     public function fetch_questions(Course $course)
     {
         $questions = $course->questions;
         return view('admin.question', compact('course','questions'));
     }
 
+    // update course questions
     public function question_update(Question $question)
     {
         $data = json_decode(file_get_contents('php://input'));
@@ -154,9 +165,42 @@ class AdminController extends Controller
         }
     }
 
+    // delete a course question
     public function question_delete(Question $question)
     {
         $question->delete();
         return back()->with('msg', 'Question deleted seccessfully');
+    }
+
+    // delete a user or make a user an admin or reset user quiz time
+    public function decision(Request $request)
+    {
+        $users_id = $request->users_id ? explode(',',$request->users_id[0]) : [];
+        
+        if ($request->action === 'Delete Permanently' && !empty($users_id)) {
+            collect($users_id)->each(function($id){
+                User::find($id)->delete();
+            });
+            return back()->with("msg", "user(s) deleted successfully");
+        } elseif ($request->action === 'Make Admins' && !empty($users_id)) {
+            collect($users_id)->each(function($id){
+                User::find($id)->update(['isadmin'=> 1]);
+            });
+            return back()->with("msg", "user(s) have been made Admins");
+        }elseif ($request->action === 'Restart Quiz' && !empty($users_id)) {
+            collect($users_id)->each(function($id){
+                $user  = User::find($id);
+                if ($user->registered_courses) {
+                    $user->registered_courses()->update(['completed' => 0, "started" => null]);
+                }
+                if ($user->result) {
+                    $user->result()->delete();
+                }
+                return back()->with("msg", "user(s) have been update and can start their quiz now.");
+            });
+        }else {
+            return back();
+        } 
+        
     }
 }

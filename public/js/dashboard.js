@@ -28,3 +28,21 @@ function toggleForm() {
         panel.style.maxHeight = panel.scrollHeight + "px";
     }
 };
+
+let arr = [];
+
+function setUsersInputValue(input) {
+    var users_input = document.getElementById('users_id');
+    if (input.checked == true) {
+        arr.unshift(input.value);
+    } else if (input.checked == false && arr.indexOf(input.value) > -1) {
+        arr.splice(arr.indexOf(this.value), 1);
+    }
+    users_input.value = arr.join(',');
+}
+
+function addNewRow() {
+    let div = document.createElement('');
+    document.forms[1].append((div));
+
+}

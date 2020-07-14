@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="container mt-4">
+<div class="container pt-4 pb-2">
     <div class="row justify-content-center shadow" id="row">
         <div class="col-lg-6 col-md-5 col-sm-12 col-12 p-0">
             <img src="{{asset('image/download (1).jfif')}}" alt="">

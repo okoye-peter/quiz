@@ -1,30 +1,29 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/startQuiz.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
+    <script src="{{ asset('js/timer.js') }}"></script>
 @endsection
 @section('content')
-
-
 <div class="container-fluid">
-	<div class="row mt-4">
-		<div class="col-3">
-			<img src="{{ $user->image }}" class="img-thumbnail my-5 mx-auto d-block wow bounceInDown">
-            <div class="row w-100">
-                <div class="col-6">
+	<div class="row pt-3" style="height: fit-content">
+		<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+			<img src="{{ $user->image }}" class="img-thumbnail">
+            <div class="row w-100" style="font-size: 16px">
+                <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                     Name:
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                     {{$user->name}}
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                     Email:
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                     {{$user->email}}
                 </div>
             </div>
-            <h5 class="row timer justify-content-center my-5">
+            <h5 class="row timer justify-content-center mt-5">
                 <span id="hrs">@if ($time_remaining->hour < 10)0{{$time_remaining->hour}}@else{{$time_remaining->hour}}@endif</span>
                 <span class="blinkers">:</span>
                 <span id="mins">@if ($time_remaining->minute < 10)0{{$time_remaining->minute}}@else{{$time_remaining->minute}}@endif</span>
@@ -32,8 +31,9 @@
                 <span id="secs">@if ($time_remaining->second < 10)0{{$time_remaining->second}}@else{{$time_remaining->second}}@endif</span>
             </h5>
 		</div>
-		<div class="col-9">
-			<form action="{{ route('mark') }}" method="post" name="quiz">
+		<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+            <form action="{{ route('mark') }}" method="post" name="quiz">
+                @csrf
                 {{-- subjects begins --}}
 				<ul class="nav nav-pills nav-justify mb-4" role="tablist">
                     @foreach($courses as $key =>$course)
@@ -91,11 +91,9 @@
                         {{-- subject question ends --}}
                     </div>
                 @endforeach
-                @csrf
                 <input type="submit" value="Submit" class="btn btn-success mt-5">
             </form>
         </div>
     </div>
 </div>
-<script src="{{ asset('js/timer.js') }}"></script>
 @endsection

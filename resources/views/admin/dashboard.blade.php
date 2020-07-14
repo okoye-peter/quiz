@@ -5,7 +5,13 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container wrapper">
+      @if (session()->has('msg'))
+          <div class="alert alert-success alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              {{session()->get('msg')}}
+          </div>                                
+      @endif
       <div class="row bg-white shadow-sm p-3 rounded">
         <ul class="nav nav-pills">
           <li class="nav-item">
@@ -33,12 +39,19 @@
               <div class="float-left">
                 <div class="selectric-wrapper selectric-form-control selectric-selectric">
                   <div class="selectric-hide-select">
-                    <select class="form-control selectric" tabindex="-1">
-                      <option>Action For Selected</option>
-                      <option>Move to Draft</option>
-                      <option>Move to Pending</option>
-                      <option>Delete Permanently</option>
-                    </select>
+                    <form action="{{ route('admin.decision') }}" method="post" class="form-inline" name="addToArray">
+                      @csrf
+                      <input type="hidden" name="users_id" id="users_id">
+                      <label class="d-flex" style="font-size: 14px">
+                        Choose action to be performed on selected users:
+                        <select class="form-control selectric ml-2" tabindex="-1" name="action" required onchange="this.parentNode.parentNode.submit()">
+                          <option disabled selected >Action to be performed</option>
+                          <option value="Delete Permanently">Delete Permanently</option>
+                          <option value="Make Admins">Make Admins</option>
+                          <option value="Restart Quiz">Restart Quiz</option>
+                        </select>
+                      </label>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -55,11 +68,7 @@
                   <tbody id="users">
                     <tr>
                       <th class="pt-2">
-                        <div class="custom-checkbox custom-checkbox-table custom-control">
-                          <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad"
-                            class="custom-control-input" id="checkbox-all">
-                          <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                        </div>
+                      
                       </th>
                       <th>Author</th>
                       <th>Email</th>
@@ -72,8 +81,7 @@
                       <tr class="user">
                         <td>
                           <div class="custom-checkbox custom-control">
-                            <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-2">
-                            <label for="checkbox-2" class="custom-control-label">&nbsp;</label>
+                            <input type="checkbox" class="form-check-input" value="{{$user->id}}" name="{{$user->name}}" onclick="setUsersInputValue(this)">
                           </div>
                         </td>
                         <td>

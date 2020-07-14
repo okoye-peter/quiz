@@ -21,55 +21,59 @@
         <img src='{{ asset("$user->image") }}' alt="" class="img-thumbnail image">
         <div class="row flex-wrap mb-4 justify-content-between">
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <h5>User details</h5>
-                <p class="grids">
-                    <span>Name:</span>
-                    <span>{{$user->name}}</span>
-                </p>
-                <p class="grids">
-                    <span>Email:</span>
-                    <span>{{$user->email}}</span>
-                </p>
-                <p class="grids">
-                    <span>Date of birth:</span>
-                    <span>{{$user->birth}}</span>
-                </p>
-                <p class="grids">
-                    <span>Address:</span>
-                    <span>{{$user->address}}</span>
-                </p>
-                <p class="grids">
-                    <span>Nationality:</span>
-                    <span>{{$user->nationality}}</span>
-                </p>
-                <p class="grids">
-                    <span>City:</span>
-                    <span>{{$user->city}}</span>
-                </p>
-                <p class="grids">
-                    <span>Gender:</span>
-                    <span>{{$user->gender}}</span>
-                </p>
+                <div class="shadow p-3 bg-white  h-100">
+                    <h5 style="text-decoration:underline" class="text-muted">User details:</h5>
+                    <p class="grids">
+                        <span>Name:</span>
+                        <span>{{$user->name}}</span>
+                    </p>
+                    <p class="grids">
+                        <span>Email:</span>
+                        <span>{{$user->email}}</span>
+                    </p>
+                    <p class="grids">
+                        <span>Date of birth:</span>
+                        <span>{{$user->birth}}</span>
+                    </p>
+                    <p class="grids">
+                        <span>Address:</span>
+                        <span>{{$user->address}}</span>
+                    </p>
+                    <p class="grids">
+                        <span>Nationality:</span>
+                        <span>{{$user->nationality}}</span>
+                    </p>
+                    <p class="grids">
+                        <span>City:</span>
+                        <span>{{$user->city}}</span>
+                    </p>
+                    <p class="grids">
+                        <span>Gender:</span>
+                        <span>{{$user->gender}}</span>
+                    </p>
+                </div>
                 
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                <h5 class="text-center">Results</h5>
-                @if ($registered_courses == 'not yet registered')
-                    <h5 class="text-center">not yet registered</h5>
-                @else
-                    @foreach ($registered_courses->course as $course)
-                        <p class="grids">
-                            <span>
-                                {{$course}}:
-                            </span>
-                            @if ($result != 'not available')
+                <div class="shadow p-3 bg-white h-100">
+                    <h5 class="text-muted" style="text-decoration: underline">Results</h5>
+                    @if ($registered_courses == 'not yet registered')
+                        <h5 class="text-center">not yet registered</h5>
+                    @else
+                        @foreach ($registered_courses->course as $course)
+                            <p class="grids">
                                 <span>
-                                    {{$result->$course}}
+                                    {{$course}}:
                                 </span>
-                            @endif
-                        </p>                       
-                    @endforeach
-                @endif
+                                @if ($result != 'not available')
+                                    <span>
+                                        {{$result->$course}}
+                                    </span>
+                                @endif
+                            </p>                       
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
         <section class="mb-4">

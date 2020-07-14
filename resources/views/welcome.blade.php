@@ -12,11 +12,19 @@
         <link rel="stylesheet" href="{{asset('css/welcome.css')}}">
         <link rel="stylesheet" href="{{asset('WOW-master/css/libs/animate.css')}}">
 
+        <!-- chart -->
+        <link rel="stylesheet" type="text/css" href="{{asset('css/chatbot.min.css')}}">
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         
         <!-- font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body{
+                background: white
+            }
+        </style>
 
     </head>
     <body>
@@ -302,8 +310,19 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="{{asset('WOW-master/dist/wow.min.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css">
+        {{-- <script src="{{asset('js/widget.js')}}"></script> --}}
         <script>
             new WOW().init();
+            var botmanWidget = {
+                title:"LEO",
+                aboutText: 'Leo',
+                introMessage: "✋ Hi! I'm Leo",
+                mainColor:'#ff4d4d',
+                bubbleBackground:'#ff0000',
+                headerTextColor: '#fff'
+            };
         </script>
+        <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
     </body>
 </html>

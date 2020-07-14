@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Course;
 use Illuminate\Http\Request;
 use App\Result;
+use Illuminate\Support\Facades\DB;
 
 class CheckAnswers extends Controller
 {
@@ -24,16 +25,17 @@ class CheckAnswers extends Controller
         }
 
         $result = json_encode($result);
-
-        $user->result()->create([
-            'user_id' => $user->id,
-            'scores' => $result
-        ]);
-
-        $user->registered_courses()->update([
-            'completed' => true,
-            'updated_at' => now()
-        ]);
+        DB::transaction(function() use ($user, $result){
+            $user->result()->create([
+                'user_id' => $user->id,
+                'scores' => $result
+            ]);
+    
+            $user->registered_courses()->update([
+                'completed' => true,
+                'updated_at' => now()
+            ]);
+        });
 
         return view('finish', compact($user));
     }

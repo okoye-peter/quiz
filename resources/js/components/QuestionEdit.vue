@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p @dblclick="display = !display" v-show="display">{{value | capitalize}}</p>
-        <textarea v-model="value" @blur="update" v-show="!display">
+        <p @dblclick="display = !display" v-show="display" data-toggle="tooltip" data-placement="top" title="double click to edit">{{value | capitalize}}</p>
+        <textarea v-model="value" @blur="update" v-show="!display" data-toggle="tooltip" data-placement="top" title="click outside the input to update to edit">
             {{value}}
         </textarea>
     </div>

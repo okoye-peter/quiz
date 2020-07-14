@@ -40,20 +40,7 @@
                                     <div class="table-responsive">
                                         <div class="container-fluid">
                                             <div class="row">
-                                                <div class="col-sm-12 col-md-6">
-                                                    <div class="dataTables_length" id="table-1_length">
-                                                        <label class="d-flex">Show 
-                                                            <select name="table_length" class="form-control form-control-sm w-25 mx-2">
-                                                                <option value="10">10</option>
-                                                                <option value="25">25</option>
-                                                                <option value="50">50</option>
-                                                                <option value="100">100</option>
-                                                            </select>
-                                                            entries
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6">
+                                                <div class="col-sm-12 col-md-6 offset-6">
                                                     <div id="table-1_filter" class="dataTables_filter">
                                                         <label class="ml-auto d-flex justify-content-end">
                                                             Search: <input type="search" class="form-control w-50 ml-2 form-control-sm" placeholder="filter table" onkeyup="filter(this.value)">

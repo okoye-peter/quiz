@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p @dblclick="display = !display" v-show="display">{{value | capitalize}}</p>
+        <p @dblclick="display = !display" v-show="display" data-toggle="tooltip" data-placement="top" title="double click to edit">{{value | capitalize}}</p>
         <input v-model:value="value" @blur="update" v-show="!display">
     </div>
 </template>

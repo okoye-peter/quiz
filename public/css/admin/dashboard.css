@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .nav-pills .nav-link {
     padding: 0.8em;
     font-size: 16px;
@@ -5,28 +9,31 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.nav-pills .nav-link:hover{
+.nav-pills .nav-link:hover {
     background-color: #f6f7fe;
 }
 
-.nav-pills .nav-link.active .badge{
+.nav-pills .nav-link.active .badge {
     background-color: white;
     color: black;
 }
 
-
-.nav-pills .nav-link .badge{
+.nav-pills .nav-link .badge {
     border-radius: 1.5em;
 }
 
-table tbody tr th{
-    font-size: 20px;
-}
-
-table tbody tr td{
+.alert {
     font-size: 16px;
 }
 
-table tbody tr td a{
+table tbody tr th {
+    font-size: 20px;
+}
+
+table tbody tr td {
+    font-size: 16px;
+}
+
+table tbody tr td a {
     display: flex;
 }
