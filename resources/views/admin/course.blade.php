@@ -25,12 +25,19 @@
                             @enderror
                             <form class="form-inline mb-3 panel" action="{{ route('course.create') }}" method="post">
                                 @csrf
-                                <label for="course">Course Title:</label>
-                                <input type="text" class="form-control form-control-sm mx-2" placeholder="Enter course" id="course" name="course">
-                                <label for="time" class="ml-4">Time Limit(mins):</label>
-                                <input type="number" class="form-control form-control-sm mx-2" placeholder="Enter time limit" id="time" name="time_limit">
-                                <button type="submit" class="btn btn-dark mr-2 btn-sm">Create</button> 
+                                <div class="grid">
+                                    <div>
+                                        <label for="course">Course Title:</label>
+                                        <input type="text" class="form-control form-control-sm mx-2" placeholder="Enter course" id="course" name="course[]">
+                                    </div>
+                                    <div>
+                                        <label for="time" class="ml-4">Time Limit(mins):</label>
+                                        <input type="number" class="form-control form-control-sm mx-2" placeholder="Enter time limit" id="time" name="time_limit[]">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-dark mr-2 btn-sm" id="create">Create</button> 
                                 <button type="button" class="btn-link btn btn-sm" onclick="toggleForm()"> Cancel</button>
+                                <button type="button" class="btn-primary btn btn-sm" onclick="addNewRowForCourse()"> add new row</button>
                             </form>
                             <div class="card">
                                 <div class="card-header">

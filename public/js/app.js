@@ -37477,6 +37477,11 @@ var render = function() {
             expression: "display"
           }
         ],
+        attrs: {
+          "data-toggle": "tooltip",
+          "data-placement": "top",
+          title: "double click to edit"
+        },
         on: {
           dblclick: function($event) {
             _vm.display = !_vm.display
@@ -37502,6 +37507,11 @@ var render = function() {
           expression: "!display"
         }
       ],
+      attrs: {
+        "data-toggle": "tooltip",
+        "data-placement": "top",
+        title: "click outside the input to update to edit"
+      },
       domProps: { value: _vm.value },
       on: {
         blur: _vm.update,

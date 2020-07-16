@@ -74,7 +74,6 @@
                       <th>Email</th>
                       <th>courses</th>
                       <th>Created At</th>
-                      <th>Results</th>
                       <th>Status</th>
                     </tr>
                     @foreach ($users as $user)
@@ -100,15 +99,6 @@
                           <td>no course registered</td>
                         @endif
                         <td>{{ $user->created_at }}</td>
-                        @if ($user->result)
-                          @php
-                            $result = json_decode($user->result->scores, true);
-                            $total = array_sum($result);
-                          @endphp
-                          <td>{{ $total }}</td>
-                        @else
-                            <td>not available</td>
-                        @endif
                         <td>
                           @if ($user->registered_courses)
                             @if ($user->registered_courses->started && $user->registered_courses->completed == true)

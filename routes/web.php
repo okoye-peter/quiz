@@ -51,6 +51,9 @@ Route::prefix('/admin')->group(function(){
     Route::post('/{course}-create', 'admin\AdminController@question_create')->name('question.create');
     Route::patch('/{question}-question', 'admin\AdminController@question_update')->name('question.update');
     Route::delete('/{question}-question', 'admin\AdminController@question_delete')->name('question.delete');
+    Route::get('/results', 'admin\AdminController@results')->name('admin.results');
+    Route::get('/{user}-{name}', 'admin\AdminController@profile')->name('admin.profile');
+
 });
 
 // botman route

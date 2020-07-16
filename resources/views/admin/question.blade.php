@@ -39,7 +39,7 @@
                                 <div class="grid">
                                     <div>
                                         <label for="question">Question:</label>
-                                        <input type="text" class="form-control form-control-sm mx-2 mb-2" placeholder="Enter question" id="question" name="question[]">
+                                        <input type="text" class="form-control form-control-sm mx-2 mb-2" placeholder="Enter question" name="question[]">
                                     </div>
                                     <div>
                                         <label for="answer" class="ml-4">Answer:</label>
@@ -58,7 +58,7 @@
                                     <input type="text" class="form-control form-control-sm mx-2" placeholder="Enter option 3" name="option3[]">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-dark mr-2 btn-sm my-2">Create</button> 
+                                <button type="submit" class="btn btn-dark mr-2 btn-sm my-2" id="create">Create</button> 
                                 <button type="button" class="btn-link btn btn-sm mr-2 my-2" onclick="toggleForm()"> Cancel</button>
                                 <button type="button" class="btn-primary btn btn-sm my-2" onclick="addNewRow()">Add new row</button>
 

@@ -167,32 +167,33 @@
                                     <div class="row flex-wrap">
                                         <div class="col-lg-12">
                                             @if ($registered_courses != 'not yet registered')
-                                            <div class="card">
-                                                <div class="card-header text-center">Registered Course</div>
-                                                <div class="card-body grids">
-                                                    @foreach ($registered_courses->course as $course)
-                                                        <span>{{$course}}</span>                                     
-                                                    @endforeach
+                                                <div class="card">
+                                                    <div class="card-header text-center">Registered Course</div>
+                                                    <div class="card-body grids">
+                                                        @foreach ($registered_courses->course as $course)
+                                                            <span class="mr-3">{{$course}}</span>                                     
+                                                        @endforeach
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <p class="text-muted">Available Courses:</p>
-                                            <form action="" method="post">
-                                                @method("PATCH")
-                                                @csrf
-                                                <div class="edit_courses">
-                                                    @foreach ($courses as $course)
-                                                        <div class="form-check">
-                                                            @if (in_array($course->course, $registered_courses->course))
-                                                                <input type="checkbox" name="course[]" value="{{$course->course}}" class="form-check-input" checked> {{$course->course}}
-                                                            @else
-                                                                <input type="checkbox" name="course[]" value="{{$course->course}}" class="form-check-input"> {{$course->course}}
-                                                            @endif
+                                                @if ($result == 'not available')
+                                                    <p class="text-muted">Available Courses:</p>
+                                                    <form action="" method="post">
+                                                        @method("PATCH")
+                                                        @csrf
+                                                        <div class="edit_courses">
+                                                            @foreach ($courses as $course)
+                                                                <div class="form-check">
+                                                                    @if (in_array($course->course, $registered_courses->course))
+                                                                        <input type="checkbox" name="course[]" value="{{$course->course}}" class="form-check-input" checked> {{$course->course}}
+                                                                    @else
+                                                                        <input type="checkbox" name="course[]" value="{{$course->course}}" class="form-check-input"> {{$course->course}}
+                                                                    @endif
+                                                                </div>
+                                                            @endforeach
                                                         </div>
-                                                    @endforeach
-                                                </div>
-                                                <input type="submit" class="btn btn-outline-primary btn-sm w-50 d-block mx-auto mb-3 mt-2" value="update">
-                                            </form>
-                                                
+                                                        <input type="submit" class="btn btn-outline-primary btn-sm w-50 d-block mx-auto mb-3 mt-2" value="update">
+                                                    </form>
+                                                @endif                                                
                                             @else
                                                 <h4 class="text-center">
                                                     not yet registered

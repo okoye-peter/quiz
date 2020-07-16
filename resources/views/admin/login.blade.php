@@ -101,6 +101,11 @@
                                         </span>
                                     @enderror
                                 </div>
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
                 
                                 <input type="submit" value="Login" class="btn btn-info w-100">
                             </form>

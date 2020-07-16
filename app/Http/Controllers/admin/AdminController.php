@@ -9,6 +9,7 @@ use App\User;
 use App\Course;
 use App\Question;
 use App\RegisteredCourses;
+use App\Result;
 
 class AdminController extends Controller
 {
@@ -96,14 +97,18 @@ class AdminController extends Controller
     // create a new course
     public function course_create(Request $request)
     {
-        $data = $request->validate([
-            'course' => 'required|string',
-            'time_limit' => 'required|integer'
-        ]);
-                
-        Course::create($data);
-        $course = $data['course'];
-        return back()->with('msg', "$course created successfully");
+        $course = collect($request->course);
+        $time = collect($request->time_limit);
+        $course->each(function($value , $index) use ($time){
+            // check if the course title and time limit is defined
+            if ($value != null && $time[$index] != null ) {
+                Course::create([
+                    'course' => $value,
+                    'time_limit' => $time[$index],
+                ]);
+            }
+        });
+        return back()->with('msg', "Course(s) created successfully");
     }
 
     // update course detail
@@ -132,18 +137,25 @@ class AdminController extends Controller
     // add course questions
     public function question_create(Course $course, Request $request)
     {
-        dd($request->all());
-        // $data = $request->validate([
-        //     'question' => 'required|string',
-        //     'answer' => 'required|string',
-        //     'option1' => 'required|string',
-        //     'option2' => 'required|string',
-        //     'option3' => 'required|string',
-        // ]);
-
-        // $data['course_id'] = $course->id;
-        // Question::create($data);
-        // return back()->with('msg', 'Qusetion created successfully');
+        $questions = collect($request->question);
+        $answers = collect($request->answer);
+        $option1s = collect($request->option1);
+        $option2s = collect($request->option2);
+        $option3s = collect($request->option3);
+        $questions->each(function($value , $index) use ($answers, $option1s, $option2s, $option3s, $course){
+            // check if the question, answer and option are defined
+            if ($value != null && $answers[$index] != null && $option1s[$index] != null && $option2s[$index] != null && $option3s[$index] != null) {
+                $course->questions()->create([
+                    
+                    'question' => $value,
+                    'answer' => $answers[$index],
+                    'option1' => $option1s[$index],
+                    'option2' => $option2s[$index],
+                    'option3' => $option3s[$index],
+                ]);
+            }
+        });
+        return back()->with('msg', 'Qusetion(s) created successfully');
         
     }
 
@@ -202,5 +214,16 @@ class AdminController extends Controller
             return back();
         } 
         
+    }
+
+    public function results()
+    {
+        $results = Result::with('user')->paginate(50);
+        return view('admin.results', compact('results'));
+    }
+
+    public function profile(User $user)
+    {
+        return view('admin.profile', compact('user'));
     }
 }

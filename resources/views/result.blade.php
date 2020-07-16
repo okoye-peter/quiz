@@ -7,7 +7,6 @@
 @section('content')
     <div class="d-flex justify-content-center">
         <div id="printDiv">
-            {{-- <img src="{{$user->image}}" id="user" class="d-block mx-auto my-3"> --}}
             <img src="{{asset('image/images.png')}}" id="user" class="d-block mx-auto mb-5 mt-2">
             <div class="d-flex justify-content-between userDetails mx-auto">
                 <h5 class="col-lg-6 col-md-6 col-sm-6 col-6 px-0">NAME:</h5>
