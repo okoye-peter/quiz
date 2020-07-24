@@ -15,8 +15,31 @@
                         Name:
                     </span>
                     <input type="text" value="{{ $user->name }}" disabled>
+                    <span>
+                        Email:
+                    </span>
+                    <input type="email" value="{{ $user->email }}" disabled>
+                    <span>
+                        Address:
+                    </span>
+                    <input type="text" value="{{ $user->address }}" disabled>
+                    <span>
+                        City:
+                    </span>
+                    <input type="text" value="{{ $user->city }}" disabled>
+                    <span>
+                        Gender:
+                    </span>
+                    <input type="text" value="{{ $user->gender }}" disabled>
+                    <span>
+                        Date of birth:
+                    </span>
+                    <input type="date" value="{{ $user->birth }}" disabled>
+                    <span>
+                        Nationality:
+                    </span>
+                    <input type="text" value="{{ $user->nationality }}" disabled>
                 </div>
-
             </div>
         </div>
     </div>

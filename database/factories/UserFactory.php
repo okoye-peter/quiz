@@ -22,6 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'phone' => $faker->phoneNumber,
         'image' => '/image/user-'. mt_rand(1,5) .'.png',
         'birth' => $faker->date,
         'nationality' => $faker->country,

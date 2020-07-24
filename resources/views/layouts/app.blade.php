@@ -19,9 +19,6 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all">
 
-    <!-- chart -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/chatbot.min.css')}}">
-
     <!-- wow js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
@@ -94,10 +91,7 @@
             @yield('content')
         </main>
     </div>
-    
-    <script src="{{asset('js/Chart.min.js')}}"></script>
-    <script src="{{asset('js/widget.js')}}"></script>
-
+    @yield('script')
     <script>
         wow = new WOW(
             {
@@ -108,10 +102,6 @@
             }
         );
         wow.init();
-        var botmanWidget = {
-            aboutText: 'Leo',
-            introMessage: "✋ Hi! I'm Leo",
-        };
     </script>
 
 </body>

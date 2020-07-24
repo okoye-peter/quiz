@@ -1,43 +1,92 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css./result.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/result.css') }}">
 @endsection
 
 @section('content')
     <div class="d-flex justify-content-center">
-        <div id="printDiv">
-            <img src="{{asset('image/images.png')}}" id="user" class="d-block mx-auto mb-5 mt-2">
-            <div class="d-flex justify-content-between userDetails mx-auto">
-                <h5 class="col-lg-6 col-md-6 col-sm-6 col-6 px-0">NAME:</h5>
-                <p class="col-lg-6 col-md-6 col-sm-6 col-6 px-0">{{ ucfirst($user->name) }}</p>
+        <div class="container">
+            <div class="row my-4 px-5">
+                <div id="printDiv" class="shadow col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="row justify-content-center py-4">
+                        <img src="{{ asset($user->image) }}" alt="image not found" class="img-thumbnail mt-4">
+                    </div>
+                    <div class="row p-3">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                            <span>
+                                NAME:
+                            </span>
+                            <span>
+                                {{strtoupper($user->name)}}
+                            </span>
+                            <span>
+                                EMAIL:
+                            </span>
+                            <span>
+                                {{strtoupper($user->email)}}
+                            </span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                            <span>
+                                DATE OF BIRTH:
+                            </span>
+                            <span>
+                                {{strtoupper($user->birth)}}
+                            </span>
+                            <span>
+                                Gender:
+                            </span>
+                            <span>
+                                {{strtoupper($user->gender)}}
+                            </span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                            <span>
+                                CITY:
+                            </span>
+                            <span>
+                                {{strtoupper($user->city)}}
+                            </span>
+                            <span>
+                                NATIONALITY:
+                            </span>
+                            <span>
+                                {{strtoupper($user->nationality)}}
+                            </span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                            <span>
+                                ADDRESS:
+                            </span>
+                            <span>
+                                {{strtoupper($user->address)}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="container px-5 mt-5">
+                        <h3 class="text-muted ml-5 pl-5">RESULTS:</h3>
+                        <div class="row justify-content-between px-5 mx-5">
+                            @foreach ($results as $course => $score)
+                                <strong class="col-lg-6 col-md-6 col-sm-6 col-6">{{$course}}:</strong>
+                                <strong class="col-lg-6 col-md-6 col-sm-6 col-6">{{$score}}</strong>
+                            @endforeach
+                            <strong class="col-lg-6 col-md-6 col-sm-6 col-6">Aggregate:</strong>
+                            <strong class="col-lg-6 col-md-6 col-sm-6 col-6">{{$total}}</strong>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end  mt-2 mb-5 mx-5">
+                        <div class="w-100 mx-3 my-2">
+                            <span class="float-right" style="border-bottom: 1px solid black; width:10em; padding:5em"></span>
+                        </div>
+                        <strong >OKOYE PETER BENEDICT.</strong>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-center userDetails mx-auto">
-                <h5 class="col-lg-6 col-md-6 col-sm-6 col-6 px-0">EMAIL:</h5>
-                <p class="col-lg-6 col-md-6 col-sm-6 col-6 px-0">{{ ucfirst($user->email) }}</p>
-            </div>
-            <table id="scores" class="mx-auto mt-2">
-                <thead>
-                    <tr>
-                        <th>SUBJECT</th>
-                        <th>SCORES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($results as $course => $score)
-                        <tr>
-                            <td>{{ ucfirst($course) }}</td>
-                            <td>{{ $score }}</td>
-                        </tr>
-                    @endforeach
-                    <tr>
-                        <td>Aggregate</td>
-                        <td id='total'></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
+@endsection
+@section('script')
     <script>
         function printArea(){
             let printContent = "<html><head><style type='text/css'>#printDiv {width: 45em;border: 1px solid cadetblue;margin-top: 2em;padding: 1em;}#user{width: 12em;height: 12em;margin-left: auto;margin-top: .5rem;    display: block;margin-right: auto;margin-bottom: 3rem;}.userDetails{width: 30em;display: flex;    justify-content: space-between;margin-left: auto;margin-right: auto;}h5{font-weight: 600;font-size: 14px;}table,tr,td,th{border: 1px solid lightgray;border-collapse: collapse;}table{width: 35em; margin-left:auto;margin-right:auto;}th,td{padding: 1.5em;text-align: center;}th{color: black;    font-size: 18px;font-weight: 700;}td{font-size: 16px;color: black;}</style></head><body>";
@@ -51,14 +100,14 @@
             winPrint.print();
             winPrint.close();
         }
-    
-        let table = document.getElementById('scores');
-        let total = 0;
-        let tbody = table.getElementsByTagName('tbody');
-        for (let i = 0; i <= 3; i++) {
-            total += +tbody[0].children[i].children[1].innerHTML;
-        }
-        document.getElementById('total').innerHTML = total;
+
+        // let table = document.getElementById('scores');
+        // let total = 0;
+        // let tbody = table.getElementsByTagName('tbody');
+        // for (let i = 0; i <= 3; i++) {
+        //     total += +tbody[0].children[i].children[1].innerHTML;
+        // }
+        // document.getElementById('total').innerHTML = total;
         printArea();
     </script>
 @endsection

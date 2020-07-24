@@ -26,10 +26,12 @@ Route::post('/change', 'resizeImage@resize')->name('change');
 Route::middleware('auth')->prefix('/user')->group(function(){
     Route::post('/courseRegister', 'PageController@registerCourses')->name('courseReg');
     Route::post('/score', 'CheckAnswers@score')->name('mark');
-    Route::get('/check_result', 'ResultsController@showform')->name('check.result');
     Route::get('/quiz/details', 'HomeController@pre_quiz')->name('pre.quiz');
+    Route::get('/quiz', 'HomeController@quizComplete')->name("quiz.complete");
     Route::get('/quiz/{user}-{name}', 'HomeController@startQuiz')->name('start.quiz');
 });
+// result route
+Route::get('/check_result', 'ResultsController@showform')->name('check.result');
 Route::post('/check_result', 'ResultsController@fetchResult')->name('result');
 
 

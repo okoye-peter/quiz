@@ -15,15 +15,26 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin.routes');
-        $this->middleware('auth');
+        $this->middleware(['admin.routes', 'auth']);
     }
 
     // load all users that are not admin with their courses and result
     public function index()
     {
         $users = User::where('isadmin', false)->with('registered_courses', 'result')->get();
-        return view('admin.dashboard', compact('users'));
+        $completed = $users->filter(function($user){
+            $user->completed === 1;
+        });
+        // $pend
+        $all = $users->count();
+        // dd($completed);
+        // $users->each(function($user) use ($completed){
+        //     echo ($user->registered_courses->completed);
+        //     // if ($user->registered_courses->completed === 1) {
+        //     //     $completed++;
+        //     // }
+        // });
+        // return view('admin.dashboard', compact('users'));
     }
 
     // load a single user details
@@ -202,14 +213,11 @@ class AdminController extends Controller
         }elseif ($request->action === 'Restart Quiz' && !empty($users_id)) {
             collect($users_id)->each(function($id){
                 $user  = User::find($id);
-                if ($user->registered_courses) {
+                if ($user->registered_courses  && !$user->result) {
                     $user->registered_courses()->update(['completed' => 0, "started" => null]);
                 }
-                if ($user->result) {
-                    $user->result()->delete();
-                }
-                return back()->with("msg", "user(s) have been update and can start their quiz now.");
             });
+            return back()->with("msg", "user(s) have been update and can start their quiz now.");
         }else {
             return back();
         } 

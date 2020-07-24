@@ -51,6 +51,10 @@
                         <span>Gender:</span>
                         <span>{{$user->gender}}</span>
                     </p>
+                    <p class="grids">
+                        <span>Phone:</span>
+                        <span>{{$user->phone}}</span>
+                    </p>
                 </div>
                 
             </div>
@@ -134,6 +138,10 @@
                                                         <option value="F" selected>Female</option>    
                                                     @endif
                                                 </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="img">phone:</label>
+                                                <input type="tel" name="image" value="{{$user->phone}}" id="">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">

@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('email')->unique();
+            $table->string('phone');
             $table->boolean('isadmin')->default(false);
             $table->date('birth');
             $table->string('nationality');

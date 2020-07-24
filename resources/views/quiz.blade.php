@@ -2,7 +2,6 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
-    <script src="{{ asset('js/timer.js') }}"></script>
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -96,4 +95,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/timer.js') }}"></script>
 @endsection

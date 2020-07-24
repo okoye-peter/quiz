@@ -16,6 +16,7 @@ class ResultsController extends Controller
     {
         $user = User::where('email', $request->email)->with('result')->first();
         $results = json_decode($user->result->scores);
-        return view('result', compact('user', 'results'));
+        $total  = array_sum((array)$results);
+        return view('result', compact('user', 'results', 'total'));
     }
 }

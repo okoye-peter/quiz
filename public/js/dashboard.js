@@ -100,3 +100,19 @@ function addNewRowForCourse() {
     form.insertBefore(gdiv, document.getElementById('create'));
     form.style.maxHeight = form.scrollHeight + "px";
 }
+
+function searchResult(keyword) {
+    let divs = document.querySelectorAll('.grid');
+    divs.forEach(div => {
+        let status = false;
+        if (div.textContent.toLowerCase().match(keyword.toLowerCase())) {
+            status = true;
+        }
+
+        if (!status) {
+            div.style.display = 'none';
+        } else {
+            div.style.display = '';
+        }
+    });
+}

@@ -37,6 +37,6 @@ class CheckAnswers extends Controller
             ]);
         });
 
-        return view('finish', compact($user));
+        return redirect('/user/quiz');
     }
 }

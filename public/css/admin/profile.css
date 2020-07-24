@@ -8,6 +8,7 @@ div.shadow.grid {
     grid-template-columns: repeat(2, 1fr);
     font-size: 16px;
     justify-content: space-between;
+    grid-gap: 1.5em
 }
 
 div.shsdow.grid input {

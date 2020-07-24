@@ -20,12 +20,18 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * return course object with questions
+     */
     public function fetch_course_questions(string $course){
         $course = Course::where('course', $course)->with('questions')->first();
         $this->time += $course->time_limit;
         return $course->questions;
     }
 
+    /**
+     * return object
+     */
     public function setTime($start_time, $time_limit){
         // create a date from the time you started the quiz
         $date = date_create($start_time);
@@ -55,22 +61,27 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return array
      */
     public function index()
     {
         $user  = auth()->user();
         // check if user have registered courses
-        if ($user->registered_courses && $user->registered_courses->started) {
+        if ($user->registered_courses && $user->registered_courses->started && !$user->result) {
             return redirect("/user/quiz/$user->id-$user->name");
-        } elseif ($user->registered_courses) {
+        } elseif ($user->registered_courses && !$user->result) {
             return redirect('/user/quiz/details');
+        }elseif ($user->result) {
+            return redirect('/user/quiz');
         }else {
             $courses = Course::pluck("course");
             return view('home',compact('user', 'courses'));
         }
     }
 
+    /**
+     * return user and course as object, but time as array
+     */
     public function pre_quiz()
     {
         $user = auth()->user();
@@ -82,6 +93,9 @@ class HomeController extends Controller
         return view('start', compact('user', 'courses', 'time'));
     }
 
+    /**
+     * return couses, user and time_remaining as object but question as array
+     */
     public function startQuiz(User $user)
     {
         date_default_timezone_set("Africa/Lagos");
@@ -97,8 +111,12 @@ class HomeController extends Controller
         $questions = $this->question;
         $courses = $this->courses->course;
         $time_remaining = $this->setTime($user->registered_courses->started, $this->time);
-        
-        // dd('yes');
         return view("quiz", compact("user", "questions", "courses", 'time_remaining'));
+    }
+
+    public function QuizComplete()
+    {
+        $user = auth()->user();
+        return view('quiz_complete', compact('user'));
     }
 }
