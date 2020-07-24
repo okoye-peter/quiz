@@ -19,7 +19,7 @@
         "laravel/ui": "^1.1",
         "botman/botman": "^2.5",
         "botman/driver-web": "^1.5",
-        "symfony/cache": "3.2"
+        "symfony/cache": "3.4.35"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
