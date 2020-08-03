@@ -14,9 +14,12 @@ class ResultsController extends Controller
 
     public function fetchResult(Request $request)
     {
+        $data = $request->validate([
+            'email' => "required|exists:users"
+        ]);
         $user = User::where('email', $request->email)->with('result')->first();
-        $results = json_decode($user->result->scores);
-        $total  = array_sum((array)$results);
+        $results = $user->result ? json_decode($user->result->scores) : null;
+        $total  =  $results ? array_sum((array)$results) : '';
         return view('result', compact('user', 'results', 'total'));
     }
 }

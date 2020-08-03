@@ -15,16 +15,29 @@
       <div class="row bg-white shadow-sm p-3 rounded">
         <ul class="nav nav-pills">
           <li class="nav-item">
-            <a class="nav-link active" href="#">All <span class="badge badge-white">10</span></a>
+            <button type="button" class="btn btn-primary p-1 text-white nav-link">
+              Users <span class="badge badge-light">{{$all}}</span>
+            </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Draft <span class="badge badge-primary">2</span></a>
+            <button type="button" class="btn btn-success p-1 text-white nav-link">
+              completed <span class="badge badge-light">{{$completed}}</span>
+            </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pending <span class="badge badge-primary">3</span></a>
+            <button type="button" class="btn btn-danger p-1 text-white nav-link">
+              Unregistered <span class="badge badge-light">{{$pending}}</span>
+            </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Trash <span class="badge badge-primary">0</span></a>
+            <button type="button" class="btn btn-warning p-1 nav-link">
+              In progress <span class="badge badge-light">{{$inProgress}}</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-info p-1 nav-link">
+              not started <span class="badge badge-light">{{$notStarted}}</span>
+            </button>
           </li>
         </ul>
       </div>

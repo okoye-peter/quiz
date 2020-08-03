@@ -22,19 +22,29 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::where('isadmin', false)->with('registered_courses', 'result')->get();
+        //number of people that have completed the quiz
         $completed = $users->filter(function($user){
-            $user->completed === 1;
-        });
-        // $pend
+            if ($user->registered_courses) return  $user->registered_courses->completed === 1;
+            return false;
+        })->count();
+        // number of people that are yet to registered their courses
+        $pending = $users->filter(function($user){
+            if (!$user->registered_courses) return  true;
+            return false;
+        })->count();
+        // number of people that have registered but not started the quiz
+        $notStarted = $users->filter(function($user){
+            if ($user->registered_courses) return  $user->registered_courses->completed === 0;
+            return false;
+        })->count();
+        // number of people currently taking the quiz
+        $inProgress = $users->filter(function($user){
+            if ($user->registered_courses) return  ($user->registered_courses->completed === 0 && $user->registered_courses->started);
+            return false;
+        })->count();
+        // number of all users
         $all = $users->count();
-        // dd($completed);
-        // $users->each(function($user) use ($completed){
-        //     echo ($user->registered_courses->completed);
-        //     // if ($user->registered_courses->completed === 1) {
-        //     //     $completed++;
-        //     // }
-        // });
-        // return view('admin.dashboard', compact('users'));
+        return view('admin.dashboard', compact('users','all','completed','pending','notStarted','inProgress'));
     }
 
     // load a single user details

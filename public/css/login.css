@@ -25,6 +25,15 @@
 
 @media screen and (max-width: 425px) {
     .container div#row {
+        flex-wrap: wrap-reverse;
+    }
+    .container div#row {
         height: 600px;
+    }
+    .col-lg-6 img {
+        border-radius: 0px;
+    }
+    .form {
+        margin-bottom: 2em;
     }
 }
