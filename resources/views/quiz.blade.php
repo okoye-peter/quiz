@@ -18,7 +18,7 @@
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                     Email:
                 </div>
-                <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                <div class="col-12 col-lg-6 col-md-6 col-sm-12" id="email">
                     {{$user->email}}
                 </div>
             </div>
@@ -46,49 +46,49 @@
                   $i = 1;
                 @endphp
                 {{-- question begins --}}
-
-                @foreach($questions as $subject => $question)
-                    @if($courses[0] === $subject)<div class="tab-content"> @endif
-                    <div id="tab{{$i++}}" class="tab-pane  fade @if($courses[0] === $subject) active show @endif">
+                @foreach($courses as  $x => $course)
+                    @if($x === 0)<div class="tab-content"> @endif
+                    <div id="tab{{$i++}}" class="tab-pane  fade @if($x === 0) active show @endif">
                         <div class="tab-content" style="margin-bottom:50px">
                             @php
                                 // shuffle the subject question
-                                $question = json_decode($question);
-                                shuffle($question);
+                                $quests =  $questions[$course]->shuffle();
                             @endphp
-                            @foreach($question as $index => $content)
+                            @foreach($quests as $index => $question)
+                            
                                 <div class="tab-pane fade @if($index === 0) active show @endif" role="tabpanel" id="tab{{$i}}-{{ ++$index }}">
                                     {{-- quetions --}}
                                     <p class="d-flex">
                                         <span class="mr-4">{{ $index }}.</span>
-                                        <span>{{ $content->question }}</span>
+                                        <span>{{ $question->question }}</span>
                                     </p>
-                                    {{-- shuffle question --}}
+                                    {{-- shuffle question options --}}
                                     @php
-                                      $options = array($content->answer, $content->option1, $content->option2, $content->option3);
+                                      $options = array($question->answer, $question->option1, $question->option2, $question->option3);
                                       shuffle($options);
+                                      $sub = substr_count($course, " ") > 0 ? implode("_",explode(' ', $course)) : $course;
                                     @endphp
-                                    {{-- display option --}}
+                                    {{-- display options --}}
                                     <p class="d-flex flex-column">
                                         @foreach($options as $x => $option)
                                             <span>
-											    <input type="radio" name="{{ $subject."_".$index }}[]" value="{{ $option }}"> {{ $option }}
+                                                <input type="radio" name="{{ $course."_".$index }}[]" value="{{ $option }}" onclick="choosen({{$sub.$index}}, this)" id="{{$sub.$index.'_'.$x}}"> {{ $option }}
                                             </span>
                                         @endforeach
                                     </p>
                                 </div>
                             @endforeach
                         </div>
-                        {{-- subject question number --}}
+                        {{-- course question numbers --}}
                         <ul class="nav nav-pills pagination">
-                            @for ($x = 1; $x <= count($question); $x++)
+                            @for ($x = 1; $x <= count($questions[$course]); $x++)
                                 <li  class="nav-item page-item">
-                                    <a class="nav-link @if($x == 1) active @endif page-link" href="#tab{{$i}}-{{$x}}" data-toggle="tab">{{ $x }}</a>
+                                    <a class="nav-link @if($x == 1)active @endif page-link question_num" id="{{$sub.$x}}" href="#tab{{$i}}-{{$x}}" data-toggle="tab">{{ $x }}</a>
                                 </li>
                             @endfor
                         </ul>
-                        {{-- subject question ends --}}
                     </div>
+                    {{-- subject question ends --}}
                 @endforeach
                 <input type="submit" value="Submit" class="btn btn-success mt-5">
             </form>

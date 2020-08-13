@@ -1,28 +1,28 @@
-*{
-    box-sizing: border-box !important;
+* {
+    box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
 }
-.row{
-    padding: 0px !important;
-    width: 101%;
+
+.row {
+    padding: 0px;
 }
 
-#firstRow{
+#firstRow {
     background: url('../image/photo-1516534775068-ba3e7458af70.jfif') no-repeat;
     background-size: cover;
 }
 
-#firstRow .container-fluid{
+#firstRow .container-fluid {
     background: rgba(0, 0, 0, .6);
 }
 
-#logo{
+#logo {
     position: relative;
     left: -422px;
     height: 80px;
 }
 
-.nav-link{
+.nav-link {
     margin-top: 11px;
     display: block;
     color: white;
@@ -30,115 +30,116 @@
     font-size: 16px;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: gold;
-    border-top: 1px  solid white;
-    border-bottom: 1px  solid white;
-    transform: scale(1.2,1.2);
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    transform: scale(1.2, 1.2);
 }
 
-#content{
-    margin-top: 140px !important;
+#content {
+    margin-top: 140px;
     color: white;
     padding-left: 150px;
     margin-bottom: 170px;
 }
-#content h6{
+
+#content h6 {
     border-left: 5px solid orangered;
     font-size: x-large;
     padding-left: 6px;
 }
 
-#content h1{
+#content h1 {
     font-size: 70px;
 }
 
-#dot{
-    padding:  0px 10px;
+#dot {
+    padding: 0px 10px;
     height: 20px;
     width: 10px;
     display: inline-block;
     background: orangered;
 }
 
-#content p{
+#content p {
     font-size: 25px;
     line-height: 40px;
 }
 
-#secondRow{
-    padding: 40px !important;
-
+#secondRow {
+    padding: 40px;
 }
 
-#secondRow:first-child{
-    visibility: visible; 
-    animation-delay: 0.5s; 
+#secondRow:first-child {
+    visibility: visible;
+    animation-delay: 0.5s;
     animation-name: rollIn;
 }
 
-#secondRow .col-6 img{
+#secondRow .col-lg-6 img {
     height: 430px;
     width: inherit;
 }
 
-#secondRow .col-6 p{
+#secondRow .col-lg-6 p {
     font-size: 20px;
     text-align: center;
 }
 
-#right{
-     animation-delay: 0.5s; 
+#right {
+    animation-delay: 0.5s;
     animation-name: lightSpeedIn;
 }
 
-#sign{
-    height: 150px !important;
-    widows: 500px !important;
+#secondRow .bounceInUp p>.sign {
+    height: 150px;
+    width: 500px;
 }
 
-th, td{
-    padding: 0px !important;
+th,
+td {
+    padding: 0px;
 }
 
-.row{
+.row {
     font-family: 'Times New Roman', Times, serif;
 }
 
-.rounded{
-    height: 260px !important;
-    width: 100% !important;
+.rounded {
+    height: 260px;
+    width: 100%;
 }
 
-.row .container-fluid .col-4{
-    width: 400px !important;
+.row .container-fluid .col-4 {
+    width: 400px;
 }
 
-footer{
+footer {
     color: white;
-    font-family: Arial, Helvetica, sans-serif !important;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-footer h5{
+footer h5 {
     font-weight: bolder;
 }
 
-.fa{
+.fa {
     color: dodgerblue;
-    font-size: 26px !important;
+    font-size: 26px;
 }
 
-footer .col-3 span.circle{
+footer .col-3 span.circle {
     padding: 20px;
     border-radius: 40px;
     border: 1px solid white;
 }
 
-.border{
-    border: 2px solid white !important;
+.border {
+    border: 2px solid white;
 }
 
-a[title=facebook]{
+a[title=facebook] {
     /* padding: 20px; */
     background: #3a5a95;
     height: 35px;
@@ -148,9 +149,10 @@ a[title=facebook]{
     text-align: center;
 }
 
-a[title=twitter]{
+a[title=twitter] {
     /* padding: 20px; */
-    background: #57aced;;
+    background: #57aced;
+    ;
     height: 35px;
     width: 35px;
     border-radius: 50%;
@@ -158,7 +160,7 @@ a[title=twitter]{
     text-align: center;
 }
 
-a[title=google-plus]{
+a[title=google-plus] {
     /* padding: 20px; */
     background: #dd4f43;
     height: 35px;
@@ -167,12 +169,13 @@ a[title=google-plus]{
     display: block;
     text-align: center;
 }
-.fa-google-plus{
-    font-size: 22px !important;
+
+.fa-google-plus {
+    font-size: 22px;
     padding: 4px;
 }
 
-a[title=instagram]{
+a[title=instagram] {
     /* padding: 20px; */
     background: #6b27b2;
     height: 35px;
@@ -180,4 +183,44 @@ a[title=instagram]{
     border-radius: 50%;
     display: block;
     text-align: center;
+}
+
+.best {
+    background-color: rgba(125, 125, 125, 0.1);
+    padding: 3em;
+}
+
+.section-about {
+    background: url('../image/pngtree-luxury-graduation-party-invitation-card-with-hat-and-paper-png-image_4141900.jpg') no-repeat;
+    background-position: center;
+    background-size: 100%;
+    padding-bottom: 4em;
+    color: #6990ba;
+}
+
+.about {
+    border: 2px solid skyblue;
+    margin: 2em 10em;
+}
+
+.section-about p {
+    margin-bottom: 4em;
+}
+
+
+/* tablet */
+
+@media screen and (max-width:768px) {
+    body {
+        width: 100%;
+    }
+    #secondRow {
+        padding: 0px;
+    }
+    #secondRow .bounceInUp p {
+        font-size: 16px;
+    }
+    #secondRow .bounceInUp p>.sign {
+        /* width: 5em; */
+    }
 }

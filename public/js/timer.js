@@ -39,7 +39,43 @@ function countDown() {
     }
 
     if (+hrs.textContent == 0 && +mins.textContent == 0 && +secs.textContent == 0) {
+        ``
         clearInterval(interval);
         document.quiz.submit();
     }
+}
+
+let arr;
+window.onload = function() {
+    email = document.getElementById('email').innerHTML.trim();
+    if (localStorage.choice) {
+        // load your saved answer if any
+        arr = JSON.parse(localStorage.choice);
+        let inputs = document.querySelectorAll("input[type='radio']");
+        inputs.forEach((input) => {
+            if (Object.values(arr[email]).indexOf(input.value.trim()) > -1) {
+                // select the answer you have choosen before if any
+                input.setAttribute('checked', true);
+            }
+        });
+    } else {
+        arr = {};
+        arr[email] = [];
+    }
+}
+
+function choosen(element, input) {
+    element.style.background = "green";
+    element.style.color = "white";
+    if (input.checked == true) {
+        input.parentNode.parentNode.querySelectorAll('input').forEach(child => {
+            if (arr[email].indexOf(child.value) > -1) {
+                arr[email].splice(arr[email].indexOf(child.value), 1);
+            }
+        });
+        arr[email].push(input.value);
+    }
+    // save your answers to local storage
+    localStorage.choice = JSON.stringify(arr);
+    console.log(arr[email]);
 }

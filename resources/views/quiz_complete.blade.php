@@ -25,3 +25,10 @@
         </div>
     </div>
 @endsection
+@section('script')
+    <script>
+        if(localStorage.choice){
+            localStorage.removeItem('choice');
+        }
+    </script>
+@endsection

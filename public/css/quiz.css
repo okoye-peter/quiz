@@ -16,7 +16,17 @@ h5.timer span {
 
 img.img-thumbnail {
     display: block;
-    height: 25%;
+    height: 10em;
     border-radius: 50%;
-    margin: 2em auto;
+    margin: 4em auto;
+}
+
+.nav-pills .nav-link:focus {
+    box-shadow: none;
+}
+
+.nav-pills .question_num.active {
+    color: green;
+    border: 1px solid green;
+    background-color: transparent;
 }

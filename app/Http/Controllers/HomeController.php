@@ -110,6 +110,7 @@ class HomeController extends Controller
         }
         $questions = $this->question;
         $courses = $this->courses->course;
+        shuffle($courses);
         $time_remaining = $this->setTime($user->registered_courses->started, $this->time);
         return view("quiz", compact("user", "questions", "courses", 'time_remaining'));
     }
