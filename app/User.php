@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements CanResetPassword
+class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
 {
     use Notifiable;
 
@@ -16,9 +16,7 @@ class User extends Authenticatable implements CanResetPassword
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', "phone", 'image', 'password', 'date', 'birth', 'nationality', 'gender', 'address', 'city', 'isadmin'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.

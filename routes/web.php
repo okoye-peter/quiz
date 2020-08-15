@@ -11,19 +11,18 @@
 |
 */
 
-use App\User;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/verify', 'Auth/RegisterController@emailVerify');
 
-Auth::routes();
-
+Auth::routes(['verify' => true]);
 // user routes
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/resize', function(){ return view('resize'); });
 Route::post('/change', 'resizeImage@resize')->name('change');
-Route::middleware('auth')->prefix('/user')->group(function(){
+Route::middleware(['auth','verified'])->prefix('/user')->group(function(){
     Route::post('/courseRegister', 'PageController@registerCourses')->name('courseReg');
     Route::post('/score', 'CheckAnswers@score')->name('mark');
     Route::get('/quiz/details', 'HomeController@pre_quiz')->name('pre.quiz');
@@ -58,11 +57,5 @@ Route::prefix('/admin')->group(function(){
 
 });
 
-// botman route
-Route::get('/bot', function(){
-    return view('botman');
-});
-
-Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 // Route::post('password/email', "Auth/ForgotPasswordControllre@sendResetLinkEmail");
 // Route::post('password/reset', "Auth/ResetPasswordControllre@reset");

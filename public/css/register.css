@@ -11,14 +11,18 @@ main.py-4{
     height: 800px !important;
 }
 
-div.w-50{
+div.center.swing{
     background: rgba(0, 0, 0, 0.4);
-    /* opacity: 0.6; */
     color: white;
-    width: 600px !important;
-    height: 530px !important;
-    padding-bottom: 50px !important;
-    border-radius: 20px;
+    padding-bottom: 50px ;
+}
+div.form-control{
+    width: fit-content;
+}
+
+label.col-form-label.text-md-right{
+    padding: 0;
+    width: fit-content;
 }
 
 div.d-flex.justify-content-center.flex-column.mx-auto{

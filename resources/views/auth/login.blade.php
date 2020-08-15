@@ -7,6 +7,18 @@
 @section('content')
 <div class="container pt-4 pb-2">
     <div class="row justify-content-center shadow wrapper" id="row">
+        @if (session()->('success'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Registration successful!</strong> {{session('success')}}
+            </div>
+        @endif
+        @error('error')
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Registration Failed!</strong> {{$message}}
+            </div>
+        @enderror
         <div class="col-lg-6 col-md-5 col-sm-12 col-12 p-0">
             <img src="{{asset('image/download (1).jfif')}}" alt="">
         </div>
