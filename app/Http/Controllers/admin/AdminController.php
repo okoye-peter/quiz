@@ -10,6 +10,7 @@ use App\Course;
 use App\Question;
 use App\RegisteredCourses;
 use App\Result;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -34,9 +35,10 @@ class AdminController extends Controller
         })->count();
         // number of people that have registered but not started the quiz
         $notStarted = $users->filter(function($user){
-            if ($user->registered_courses) return  $user->registered_courses->completed === 0;
+            if ($user->registered_courses) return  $user->registered_courses->started === null;
             return false;
         })->count();
+
         // number of people currently taking the quiz
         $inProgress = $users->filter(function($user){
             if ($user->registered_courses) return  ($user->registered_courses->completed === 0 && $user->registered_courses->started);
@@ -52,9 +54,10 @@ class AdminController extends Controller
     {
         $courses = Course::orderBy('course', 'ASC')->get();
         $registered_courses = $user->registered_courses ?  json_decode($user->registered_courses->courses) : 'not yet registered';
+        $started_at =  $user->registered_courses ?  $user->registered_courses->courses->started : '';
         $id = $user->registered_courses ?  $user->registered_courses->id : '';
         $result = $user->result ? json_decode($user->result->scores) : 'not available';
-        return view('admin.user_profile', compact('user', 'result', 'courses', 'registered_courses', 'id'));
+        return view('admin.user_profile', compact('user', 'result', 'courses', 'registered_courses', 'id', 'started_at'));
     }
 
     // update user details
@@ -243,5 +246,12 @@ class AdminController extends Controller
     public function profile(User $user)
     {
         return view('admin.profile', compact('user'));
+    }
+
+    public function complaint()
+    {
+        $complaints  = DB::table('issues')->select('*')->latest()->paginate(15);
+
+        return view('admin.complaint', compact('complaints'));
     }
 }

@@ -80,7 +80,7 @@
         <div class="cotainer-fluid">
             <aside class="sidenav">
                 <a href="{{ route('admin.dashboard') }}">users</a>
-                <a href="#services">Complaint</a>
+                <a href="{{route('admin.complaint')}}">Complaint</a>
                 <a href="{{ route('admin.courses')}}">Course</a>
                 <a href="{{ route('admin.profile', [auth()->user()->id, auth()->user()->name]) }}">Profile</a>
                 <a href="{{ route('admin.results') }}">results</a>

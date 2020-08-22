@@ -22,6 +22,16 @@ div.col-8 h5{
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
 }
+.pics{
+    border-radius: 31em;
+    width: 14em;
+    margin: 4em auto;
+    display: block;
+}
+
+.footer div h4{
+    color: #53799a;
+}
 
 @media screen and (max-width: 425px){
     .col-lg-8 form .option{

@@ -15,7 +15,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/verify', 'Auth/RegisterController@emailVerify');
+Route::get('/verify', 'Auth\RegisterController@emailVerify');
+// contact us 
+Route::post('/contact', 'ContactUsController@store')->name('contact.save');
+Route::get('/contact', 'ContactUsController@showform')->name('contact.form');
 
 Auth::routes(['verify' => true]);
 // user routes
@@ -54,6 +57,7 @@ Route::prefix('/admin')->group(function(){
     Route::delete('/{question}-question', 'admin\AdminController@question_delete')->name('question.delete');
     Route::get('/results', 'admin\AdminController@results')->name('admin.results');
     Route::get('/{user}-{name}', 'admin\AdminController@profile')->name('admin.profile');
+    Route::get('/complaint', 'admin\AdminController@complaint')->name('admin.complaint');
 
 });
 

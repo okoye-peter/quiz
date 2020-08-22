@@ -37,9 +37,7 @@ function countDown() {
     if (+secs.textContent >= 00 && +secs.textContent < 10) {
         secs.innerHTML = "0" + secs.textContent;
     }
-
     if (+hrs.textContent == 0 && +mins.textContent == 0 && +secs.textContent == 0) {
-        ``
         clearInterval(interval);
         document.quiz.submit();
     }
@@ -56,6 +54,8 @@ window.onload = function() {
             if (Object.values(arr[email]).indexOf(input.value.trim()) > -1) {
                 // select the answer you have choosen before if any
                 input.setAttribute('checked', true);
+                input.parentNode.parentNode.parentNode.parentNode.nextElementSibling.querySelector("#"+input.getAttribute('id').substring(0, input.getAttribute('id').lastIndexOf('_'))).style.background = 'green';
+                input.parentNode.parentNode.parentNode.parentNode.nextElementSibling.querySelector("#"+input.getAttribute('id').substring(0, input.getAttribute('id').lastIndexOf('_'))).style.color = 'white';
             }
         });
     } else {

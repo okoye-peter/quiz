@@ -45,11 +45,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a href="{{ route('check.result') }}" class="nav-link">Check Result</a>
-                        </li>
-                    </ul>
+                    @guest
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a href="{{ route('check.result') }}" class="nav-link">Check Result</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('contact.form') }}" class="nav-link">Contact us</a>
+                            </li>
+                        </ul>    
+                    @endguest
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

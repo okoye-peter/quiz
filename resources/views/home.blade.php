@@ -5,26 +5,26 @@
 @endsection
 @section('content')
 <div class="container-fliud">
-    <div class="row justify-content-center w-100 mx-0">
-        <div class="col-3 col-lg-3 col-md-3 col-sm-3" id="first">
-            <img src="{{ $user->image }}" class="img-thumbnail my-5">
-            <div class="row w-100 flex-wrap">
-                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="row justify-content-around w-100 mx-0">
+        <div class="col-12 col-lg-3 col-md-3 col-sm-12 pb-5" id="first">
+            <img src="{{ $user->image }}" class="img-thumbnail my-5 pics">
+            <div class="row w-100 pr-5">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12" style="font-size: 14px">
                     Name:
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12" style="font-size: 14px">
                     {{$user->name}}
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12" style="font-size: 14px">
                     Email: 
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12" style="font-size: 14px">
                     {{$user->email}}
                 </div>
 
             </div>
         </div>
-        <div class="col-8 col-lg-8 col-md-8 col-sm-8">
+        <div class="col-12 col-lg-8 col-md-8 col-sm-12">
             <h5 class="w-50 mt-5">
                 Select your preferred Subjects at least 4:
             </h5>
@@ -55,9 +55,9 @@
     </div>
 
 
-    <div class="row w-100 shadow px-5 py-4 mx-0">
-        <div class="col-3 text-muted">
-            <h4 class=" mb-4">CUSTOMER FAVES</h4>
+    <div class="row w-100 shadow px-5 py-4 mx-0 bg-dark footer">
+        <div class="col-lg-3 col-md-6 col-sm-12 col-12 text-muted">
+            <h4 class="mb-4">CUSTOMER FAVES</h4>
             <p>Quiz Maker</p>
             <p>Survey Maker </p>
             <p>Form Builder </p>
@@ -69,15 +69,15 @@
             <p>Registration Forms</p>
             <p>Job Application Forms</p>
         </div>
-        <div class="col-3 text-muted">
-            <h4 class=" mb-4">HELP & INSPIRATION</h4>
+        <div class="col-lg-3 col-md-6 col-sm-12 col-12 text-muted">
+            <h4 class="mb-4">HELP & INSPIRATION</h4>
             <p>Help Center</p>
             <p>FAQs</p>
             <p>Blogs</p>
             <p>Typeform Agencies</p>
         </div>
-        <div class="col-3 text-muted">
-            <h4 class=" mb-4">CONNECT</h4>
+        <div class="col-lg-3 col-md-6 col-sm-12 col-12 text-muted">
+            <h4 class="mb-4">CONNECT</h4>
             <p>Mailchimp</p>
             <p>Hubspot</p>
             <p>Autopilot</p>
@@ -87,8 +87,8 @@
             <p>Developers</p>
             <p>Partner with us</p>
         </div>
-        <div class="col-3 text-muted">
-            <h4 class=" mb-4">CONNECT</h4>
+        <div class="col-lg-3 col-md-6 col-sm-12 col-12 text-muted">
+            <h4 class="mb-4">CONNECT</h4>
             <p>Careers</p>
             <p>What we believe</p>
             <p>News</p>

@@ -26,6 +26,27 @@
     font-size: 16px;
 }
 
+.grids{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1em;
+}
+
+.grids .grid{
+    padding: 0.5em 1em;
+    width: 100%;
+}
+
+.grids .grid p:first-child{
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.grids .grid p:first-child i{
+    font-size: 20px;
+    margin-right: 0.5em;
+}
+
 table tbody tr th {
     font-size: 20px;
 }

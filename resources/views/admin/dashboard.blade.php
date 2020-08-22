@@ -12,8 +12,29 @@
               {{session()->get('msg')}}
           </div>                                
       @endif
-      <div class="row bg-white shadow-sm p-3 rounded">
-        <ul class="nav nav-pills">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="grids w-100">
+            <div class="grid shadow-sm">
+              <p><i class="fa fa-users" style="color: #2f2fac"></i> Users: <span>{{$all}}</span></p>
+            </div>
+            <div class="grid shadow-sm">
+              <p><i class="fa fa-check-circle" style="color: green"></i> Completed: <span>{{$completed}}</span></p>
+            </div>
+            <div class="grid shadow-sm">
+              <p><i class="fa fa-times-circle" style="color: red"></i> Unregistered: <span>{{$pending}}</span></p>
+            </div>
+            <div class="grid shadow-sm">
+              <p><i class="fa fa-hourglass-start" style="color: rgba(189, 189, 21, 0.733)"></i> Inprogress: <span>{{$inProgress}}</span></p>
+            </div>
+            <div class="grid shadow-sm">
+              <p><i class="fa fa-ban" style="color: rgb(97, 33, 247)"></i> Not Started: <span>{{$notStarted}}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {{-- <ul class="nav nav-pills">
           <li class="nav-item">
             <button type="button" class="btn btn-primary p-1 text-white nav-link">
               Users <span class="badge badge-light">{{$all}}</span>
@@ -39,7 +60,7 @@
               not started <span class="badge badge-light">{{$notStarted}}</span>
             </button>
           </li>
-        </ul>
+        </ul> --}}
       </div>
 
       <div class="row mt-4">

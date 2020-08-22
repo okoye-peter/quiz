@@ -6,19 +6,25 @@
 
 @section('content')
 <div class="container pt-4 pb-2">
+    @if (session('resent'))
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ __('A fresh verification link has been sent to your email address.') }}
+        </div>
+    @endif
+    @if(session()->has('success'))
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Registration successful!</strong> {{session('success')}}
+        </div>
+    @endif
+    @error('error')
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Registration Failed!</strong> {{$message}}
+        </div>
+    @enderror
     <div class="row justify-content-center shadow wrapper" id="row">
-        @if (session()->('success'))
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Registration successful!</strong> {{session('success')}}
-            </div>
-        @endif
-        @error('error')
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Registration Failed!</strong> {{$message}}
-            </div>
-        @enderror
         <div class="col-lg-6 col-md-5 col-sm-12 col-12 p-0">
             <img src="{{asset('image/download (1).jfif')}}" alt="">
         </div>

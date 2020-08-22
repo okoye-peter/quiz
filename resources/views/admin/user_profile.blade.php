@@ -183,7 +183,7 @@
                                                         @endforeach
                                                     </div>
                                                 </div>
-                                                @if ($result == 'not available')
+                                                @if ($result == 'not available' && ($started_at != null || $started == ''))
                                                     <p class="text-muted">Available Courses:</p>
                                                     <form action="" method="post">
                                                         @method("PATCH")
