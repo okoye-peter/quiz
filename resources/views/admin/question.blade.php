@@ -116,19 +116,19 @@
                                                                         {{ $i++ }}
                                                                     </td>
                                                                     <td>
-                                                                        <question-edit :id="{{ $question->id }}" column="question" val="{{ $question->question }}"></question-edit>
+                                                                        <question-edit url="{{ route('question.update',[$question->id]) }}" column="question" val="{{ $question->question }}"></question-edit>
                                                                     </td>
                                                                     <td>
-                                                                        <question-edit :id="{{ $question->id }}" column="answer" val="{{ $question->answer }}"></question-edit>
+                                                                        <question-edit url="{{ route('question.update',[$question->id]) }}" column="answer" val="{{ $question->answer }}"></question-edit>
                                                                     </td>
                                                                     <td>
-                                                                        <question-edit :id="{{ $question->id }}" column="option1" val="{{ $question->option1 }}"></question-edit>
+                                                                        <question-edit url="{{ route('question.update',[$question->id]) }}" column="option1" val="{{ $question->option1 }}"></question-edit>
                                                                     </td>
                                                                     <td>
-                                                                        <question-edit :id="{{ $question->id }}" column="option2" val="{{ $question->option2 }}"></question-edit>
+                                                                        <question-edit url="{{ route('question.update',[$question->id]) }}" column="option2" val="{{ $question->option2 }}"></question-edit>
                                                                     </td>
                                                                     <td>
-                                                                        <question-edit :id="{{ $question->id }}" column="option3" val="{{ $question->option3 }}"></question-edit>
+                                                                        <question-edit url="{{ route('question.update',[$question->id]) }}" column="option3" val="{{ $question->option3 }}"></question-edit>
                                                                     </td>
                                                                     <td>
                                                                         <form action="{{ route('question.delete', [$question->id]) }}" method="post">

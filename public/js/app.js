@@ -1847,15 +1847,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    id: {
-      type: Number,
-      required: true
-    },
     column: {
       type: String,
       required: true
     },
     val: {
+      required: true
+    },
+    url: {
+      type: String,
       required: true
     }
   },
@@ -1869,7 +1869,7 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      axios.patch("/admin/".concat(this.id, "-course"), {
+      axios.patch(this.url, {
         column: this.column,
         value: this.value
       }).then(function (response) {
@@ -1918,7 +1918,7 @@ __webpack_require__.r(__webpack_exports__);
           window.scrollTo(0, 0);
         }
       })["catch"](function (error) {
-        console.log(error.data);
+        console.log(error);
       });
     }
   },
@@ -1986,15 +1986,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    id: {
-      type: Number,
-      required: true
-    },
     column: {
       type: String,
       required: true
     },
     val: {
+      type: String,
+      required: true
+    },
+    url: {
       type: String,
       required: true
     }
@@ -2009,7 +2009,7 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      axios.patch("/admin/".concat(this.id, "-question"), {
+      axios.patch(this.url, {
         column: this.column,
         value: this.value
       }).then(function (response) {

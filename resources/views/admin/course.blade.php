@@ -72,10 +72,10 @@
                                                                 <tr class="user">
                                                                     <td>{{ $course->id }}</td>
                                                                     <td>
-                                                                        <course-edit :id="{{ $course->id }}" val="{{ $course->course }}" column="course"></course-edit>
+                                                                        <course-edit url="{{ route('course.update',[$course->id]) }}" val="{{ $course->course }}" column="course"></course-edit>
                                                                     </td>
                                                                     <td>
-                                                                        <course-edit :id="{{ $course->id }}" val="{{ $course->time_limit }}" column="time_limit"></course-edit>
+                                                                        <course-edit url="{{ route('course.update',[$course->id]) }}" val="{{ $course->time_limit }}" column="time_limit"></course-edit>
                                                                     </td>
                                                                     <td>{{$course->questions ? count($course->questions) : 0 }}</td>
                                                                     <td  class="d-flex justify-content-around">

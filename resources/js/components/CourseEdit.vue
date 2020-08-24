@@ -8,17 +8,18 @@
 <script>
     export default({
         props:{
-            id:{
-                type: Number,
-                required:true
-            },
             column:{
                 type: String,
                 required: true,
             },
             val:{
                 required: true,
+            },
+            url:{
+                type: String,
+                required: true
             }
+
         },
 
         data(){
@@ -30,7 +31,7 @@
         
         methods:{
             update(){
-                axios.patch(`/admin/${this.id}-course`, {
+                axios.patch(this.url, {
                     column: this.column,
                     value: this.value,
                 }).then(response => {
@@ -66,7 +67,7 @@
                         window.scrollTo(0,0);
                     }
                 }).catch(error => {
-                    console.log(error.data);
+                    console.log(error);
                 })
             }
         },

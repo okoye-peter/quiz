@@ -10,15 +10,15 @@
 <script>
     export default({
         props:{
-            id:{
-                type: Number,
-                required:true
-            },
             column:{
                 type: String,
                 required: true,
             },
             val:{
+                type: String,
+                required: true
+            },
+            url:{
                 type: String,
                 required: true
             }
@@ -33,7 +33,7 @@
         
         methods:{
             update(){
-                axios.patch(`/admin/${this.id}-question`, {
+                axios.patch(this.url, {
                     column: this.column,
                     value: this.value,
                 }).then(response => {
