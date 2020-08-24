@@ -52,9 +52,10 @@ class AdminController extends Controller
     // load a single user details
     public function userProfile(User $user)
     {
+
         $courses = Course::orderBy('course', 'ASC')->get();
         $registered_courses = $user->registered_courses ?  json_decode($user->registered_courses->courses) : 'not yet registered';
-        $started_at =  $user->registered_courses ?  $user->registered_courses->courses->started : '';
+        $started_at =  $user->registered_courses ?  $user->registered_courses->started : '';
         $id = $user->registered_courses ?  $user->registered_courses->id : '';
         $result = $user->result ? json_decode($user->result->scores) : 'not available';
         return view('admin.user_profile', compact('user', 'result', 'courses', 'registered_courses', 'id', 'started_at'));
@@ -63,7 +64,7 @@ class AdminController extends Controller
     // update user details
     public function userProfileUpdate(User $user, Request $request)
     {
-        $data = $request->validate([
+        $data = tap($request->validate([
             'name' => 'required|string',
             'birth' => 'required|date',
             'nationality' => 'required|string',
@@ -71,11 +72,15 @@ class AdminController extends Controller
             'email' => 'required|email|string',
             'address' => 'required|string',
             'city' => 'required|string',
-            'image' => 'sometimes|image|max:2500'
-        ]);
-
-        if ($request->image != null) {
-            $name = $_FILES['avatar']['tmp_name'];
+        ]), function(){
+            if (request()->hasFile('image')) {
+                request()->validate([
+                    'image' => 'file|image|max:4000'
+                ]);
+            }
+        });
+        if (request()->hasFile('image')) {
+            $name = $_FILES['image']['tmp_name'];
             // upload image to cloud
             Cloudder::upload($name, null);
             // get the url of the image
