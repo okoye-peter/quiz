@@ -25,38 +25,97 @@
 
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container-fluid px-0">
             <div class="container-fluid px-0">
-                <div class="row" id="firstRow">
-                    <div class="container-fluid">
-                         <ul class="nav justify-content-center w-100 p-4">
-                            <img id="logo" src="{{asset('image/images.png')}}">
-                            <li class="nav-item">
-                                <a href="/" class="nav-link">Home</a>
-                            </li>
+                <nav class="navbar navbar-expand-md navbar-light bg-dark shadow-sm">
+            <img id="logo" src="{{asset('image/images.png')}}">
+            <div class="container py-3">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    Home
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    @guest
+                        <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
                                 <a href="{{ route('check.result') }}" class="nav-link">Check Result</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('contact.form') }}" class="nav-link">Contact us</a>
                             </li>
+                        </ul>    
+                    @endguest
+                    
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
+                <div class="row" id="firstRow">
+                    <div class="container-fluid">
+                         {{-- <ul class="nav justify-content-center w-100 p-4 links_wrapper">
+                            <img id="logo" src="{{asset('image/images.png')}}">
+                            <li class="nav-item links">
+                                <a href="/" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item links">
+                                <a href="{{ route('check.result') }}" class="nav-link">Check Result</a>
+                            </li>
+                            <li class="nav-item links">
+                                <a href="{{ route('contact.form') }}" class="nav-link">Contact us</a>
+                            </li>
                             @if (Route::has('login'))
                                 @auth
-                                    <li class="nav-item">
+                                    <li class="nav-item links">
                                         <a class="nav-link" href="{{ url('/home') }}">Home</a>
                                     </li>
                                 @else
-                                    <li class="nav-item">
+                                    <li class="nav-item links">
                                         <a class="nav-link" href="{{ route('login') }}">Login</a>
                                     </li>
                                 @if (Route::has('register'))
-                                    <li class="nav-item">
+                                    <li class="nav-item links">
                                         <a class="nav-link" href="{{ route('register') }}">Register</a>
                                     </li>
                                 @endif
                                 @endauth
                             @endif
-                        </ul>
+                        </ul> --}}
                         <div class="mx-5  wow fadeInDown top__element" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;" id="content">
                             <h6>FUEL YOUR FUTURE</h6>
                             <h1>
@@ -212,7 +271,7 @@
             <div class="container-fluid px-0">
                 <!-- footer -->
                 <footer class="row bg-dark">
-                    <div class="col-3 p-5">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12 p-5">
                         <h5>
                             ABOUT US
                         </h5>
@@ -247,7 +306,7 @@
                         </div>
                     </div>
         
-                    <div class="col-3 p-5">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12 p-5">
                         <h5>FRESH TWEETS</h5>
                         <div class="d-flex ml-3 mt-2 mb-5">
                             <i class="fa fa-twitter mr-2"></i>
@@ -272,7 +331,7 @@
                         </div>
                     </div>
         
-                    <div class="col-3 p-5">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12 p-5">
                         <h5>
                             LATEST UPDATES
                         </h5>
@@ -304,7 +363,7 @@
                             </aside>
                         </div>
                     </div>
-                    <div class="col-3 p-5">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12 p-5">
                         <h5>
                             CONNECT WITH US
                         </h5>

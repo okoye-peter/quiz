@@ -18,8 +18,9 @@
 
 #logo {
     position: relative;
-    left: -422px;
-    height: 80px;
+    width: 7em;
+    height: 7em;
+    border-radius: 3.5em;
 }
 
 .nav-link {
@@ -94,7 +95,7 @@
 
 #secondRow .bounceInUp p>.sign {
     height: 150px;
-    width: 500px;
+    width: 70%;
 }
 
 th,
@@ -187,13 +188,13 @@ a[title=instagram] {
 
 .best {
     background-color: rgba(125, 125, 125, 0.1);
-    padding: 3em;
+    padding: 3%;
 }
 
 .section-about {
     background: url('../image/pngtree-luxury-graduation-party-invitation-card-with-hat-and-paper-png-image_4141900.jpg') no-repeat;
-    background-position: center;
-    background-size: 100%;
+    background-position: auto;
+    background-size: cover;
     padding-bottom: 4em;
     color: #6990ba;
 }
@@ -222,5 +223,31 @@ a[title=instagram] {
     }
     #secondRow .bounceInUp p>.sign {
         /* width: 5em; */
+    }
+}
+
+@media screen and (max-width:425px) {
+    .links_wrapper {
+        padding: 1em;
+    }
+    #logo {
+        width: 3em;
+        height: 3em;
+    }
+    .links_wrapper .links a {
+        padding: 0.3rem 0.3rem;
+    }
+    #content {
+        margin: 2em 1em;
+        padding: 2em 1em;
+    }
+    #content h1 {
+        font-size: 43px;
+    }
+    #content p {
+        font-size: 16px;
+    }
+    .best {
+        padding: 3em;
     }
 }
